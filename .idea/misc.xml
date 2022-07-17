@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/drawable-anydpi/ic_settings.xml" value="0.1" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/layout-land/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/layout-land/country_item.xml" value="0.1" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/layout-land/frag_1.xml" value="0.1" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/layout-port/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/layout-port/country_item.xml" value="0.1" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/layout-port/frag_1.xml" value="0.10638297872340426" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/layout/country_details.xml" value="0.10638297872340426" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/menu/settings.xml" value="0.17314814814814813" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/xml/preference_remember.xml" value="0.10638297872340426" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/final_project/DogWalker_AndroidApp/app/src/main/res/layout/open_screen_app.xml" value="0.1" />
+        <entry key="..\:/Users/iluzh/AndroidStudioProjects/final_project/DogWalker_AndroidApp/app/src/main/res/xml/preference_remember.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
