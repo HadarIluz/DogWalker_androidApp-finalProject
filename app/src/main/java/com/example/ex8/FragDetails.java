@@ -14,7 +14,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-public class Frag2 extends Fragment implements LifecycleOwner {
+public class FragDetails extends Fragment implements LifecycleOwner {
     TextView tvDetails;
     com.example.ex8.MainViewModel viewModel;
 

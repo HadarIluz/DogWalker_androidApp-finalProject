@@ -4,65 +4,63 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-//change
-public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.InnerAdapterCountry> implements LifecycleOwner {
-    private List<Country> countries;
+//change all this class according the old one
+public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog> implements LifecycleOwner{
+    private List<Dog> dogs;
     private int focusedItem;
-    Frag2 frag2;
+    FragDetails fragDetails;
     MainViewModel viewModel;
 
-    public AdapterCountry(List<Country> countriesList, MainViewModel mainViewModel, int itemSelected) {
-        countries = countriesList;
+    public DogAdapter(List<Dog> dogsList, MainViewModel mainViewModel, int itemSelected) {
+        dogs = dogsList;
         viewModel = mainViewModel;
         focusedItem = itemSelected;
     }
 
     @NonNull
     @Override
-    public InnerAdapterCountry onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public InnerAdapterDog onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.country_item, parent, false);
+        View contactView = inflater.inflate(R.layout.dogs_item, parent, false);
 
         // Return a new holder instance
-        InnerAdapterCountry viewHolder = new InnerAdapterCountry(contactView);
+        InnerAdapterDog viewHolder = new InnerAdapterDog(contactView);
         return viewHolder;
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull InnerAdapterCountry holder, int position) {
-        Country country = countries.get(position);
+    //@Override
+    public void onBindViewHolder(@NonNull InnerAdapterDog holder, int position) {
+        Dog dog = dogs.get(position);
         if(position == focusedItem){
-            holder.itemView.setBackgroundColor(Color.parseColor("#EC96EC"));
+            //holder.fragDetails.setBackgroundColor(Color.parseColor("#EC96EC"));
         } else{
-            holder.itemView.setBackgroundColor(Color.parseColor("#E4E4E4"));
+            //holder.fragDetails.setBackgroundColor(Color.parseColor("#E4E4E4"));
         }
-        holder.BindData(position, country);
+        holder.BindData(position, dog);
     }
 
 
     @Override
     public int getItemCount() {
-        return countries.size();
+        return dogs.size();
     }
 
     @NonNull
@@ -72,30 +70,30 @@ public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.InnerAda
     }
 
     //---------------------------INNER CLASS---------------------------
-    public class InnerAdapterCountry extends RecyclerView.ViewHolder{
+    public class InnerAdapterDog extends RecyclerView.ViewHolder{
         public ImageView imFlag;
         public TextView countryName, population;
         public View itemView;
         public String details;
 
-        public InnerAdapterCountry(@NonNull View itemView) {
+        public InnerAdapterDog(@NonNull View itemView) {
             super(itemView);
-            imFlag = (ImageView) itemView.findViewById(R.id.imageFlag);
-            countryName = (TextView) itemView.findViewById(R.id.tvCountyName);
-            population = (TextView) itemView.findViewById(R.id.tvPopulation);
+            //imFlag = (ImageView) itemView.findViewById(R.id.imageFlag);
+            countryName = (TextView) itemView.findViewById(R.id.tvDogName);
+            //population = (TextView) itemView.findViewById(R.id.tvPopulation);
             this.itemView = itemView;
             itemView.setClickable(true);
         }
 
-        public void BindData(int position, Country country){
-            countryName.setText(country.getName());
-            population.setText(country.getShorty());
+        public void BindData(int position, Dog dog){
+            countryName.setText(dog.getName());
+            //population.setText(dog.getShorty());
 
             Context context =imFlag.getContext();
-            int id = context.getResources().getIdentifier(country.getFlag(), "drawable", context.getPackageName());
-            imFlag.setImageResource(id);
+            //int id = context.getResources().getIdentifier(dog.getFlag(), "drawable", context.getPackageName());
+            //imFlag.setImageResource(id);
 
-            details = country.getDetails();
+            details = dog.getDetails();
 
             itemView.setOnClickListener((view)->{
                 onClick(position);
@@ -115,19 +113,19 @@ public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.InnerAda
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
-                        .replace(R.id.fragContainer, Frag2.class, null, "countryDetails")
+                        .replace(R.id.fragContainer, FragDetails.class, null, "countryDetails")
                         .addToBackStack("BBB")
                         .commit();
                 ((AppCompatActivity)context).getSupportFragmentManager().executePendingTransactions();
-                frag2 = (Frag2) ((AppCompatActivity)context).getSupportFragmentManager().findFragmentByTag("countryDetails");
+                fragDetails = (FragDetails) ((AppCompatActivity)context).getSupportFragmentManager().findFragmentByTag("countryDetails");
             }
             else{
                 try{
-                    frag2 = (Frag2)((AppCompatActivity)context).getSupportFragmentManager().findFragmentById(R.id.country_details);
+                    fragDetails = (FragDetails)((AppCompatActivity)context).getSupportFragmentManager().findFragmentById(R.id.country_details);
                 } catch (Exception e){
                     ((AppCompatActivity)context).getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.country_details, Frag2.class, null, "countryDetails").addToBackStack("BBB")
+                            .replace(R.id.country_details, FragDetails.class, null, "countryDetails").addToBackStack("BBB")
                             .commit();
                 }
 
@@ -146,7 +144,7 @@ public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.InnerAda
             //viewModel.writeData(viewModel.getCountryMutableLiveData().getValue().get(position).getName());
             //-----End Raw file-------
 
-            countries.remove(position);
+            dogs.remove(position);
             if(focusedItem == position){
                 focusedItem = -1;
                 viewModel.getItemSelectedLiveData().setValue(-1);

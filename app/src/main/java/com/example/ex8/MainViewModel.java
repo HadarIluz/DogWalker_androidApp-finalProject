@@ -17,19 +17,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 //change
 public class MainViewModel extends AndroidViewModel {
-    private MutableLiveData<ArrayList<com.example.ex8.Country>> countriesLiveData;
-    private ArrayList<com.example.ex8.Country> countries;
+    private MutableLiveData<ArrayList<com.example.ex8.Dog>> countriesLiveData;
+    private ArrayList<com.example.ex8.Dog> countries;
     private MutableLiveData<Integer> itemSelectedLiveData;
     private int itemSelected;
     //------------------file objects-------------------------------
     private static String file_path;
     public static final String FILE_NAME="remove_countries.txt";
     private static ArrayList<String> remove_countries;
-    private ArrayList<Country> tempCountryList;
+    private ArrayList<Dog> tempCountryList;
     //--------------------------------------------------------------
 
     public MainViewModel(@NonNull Application application) {
@@ -39,7 +38,7 @@ public class MainViewModel extends AndroidViewModel {
         init(application);
     }
 
-    public MutableLiveData<ArrayList<com.example.ex8.Country>> getCountryMutableLiveData() {
+    public MutableLiveData<ArrayList<com.example.ex8.Dog>> getCountryMutableLiveData() {
         return countriesLiveData;
     }
 
@@ -54,7 +53,7 @@ public class MainViewModel extends AndroidViewModel {
         countriesLiveData.setValue(countries);
         // initially files params
         file_path = application.getApplicationContext().getFilesDir().getAbsolutePath();
-        tempCountryList = new ArrayList<Country>();
+        tempCountryList = new ArrayList<Dog>();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(application.getApplicationContext());
         boolean remember = prefs.getBoolean("switch_preference_1",false);
 
@@ -74,10 +73,10 @@ public class MainViewModel extends AndroidViewModel {
 
         if(remember == true)
         {
-            for (Country country : countriesLiveData.getValue()) {
+            for (Dog dog : countriesLiveData.getValue()) {
                 //if the country dont show in the list of the cuntries we have been deleted so we add him/
-                if (!remove_countries.contains(country.getName())) {
-                    tempCountryList.add(country);
+                if (!remove_countries.contains(dog.getName())) {
+                    tempCountryList.add(dog);
                 }
             }
             //update the countriesLiveData we the current new data.

@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class Frag1 extends Fragment implements LifecycleOwner {
-    ArrayList<com.example.ex8.Country> countries;
+public class FragCycle extends Fragment implements LifecycleOwner {
+    ArrayList<com.example.ex8.Dog> dogs;
     com.example.ex8.MainViewModel viewModel;
 
     @Override
@@ -32,11 +32,11 @@ public class Frag1 extends Fragment implements LifecycleOwner {
         RecyclerView rvCountry = (RecyclerView) view.findViewById(R.id.rvCountries);
 
         // Create adapter passing in the sample user data
-        com.example.ex8.AdapterCountry adapter = new com.example.ex8.AdapterCountry(viewModel.getCountryMutableLiveData().getValue(), viewModel, viewModel.getItemSelectedLiveData().getValue());
+        DogAdapter adapter = new DogAdapter(viewModel.getCountryMutableLiveData().getValue(), viewModel, viewModel.getItemSelectedLiveData().getValue());
 
-        viewModel.getCountryMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<com.example.ex8.Country>>() {
+        viewModel.getCountryMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<com.example.ex8.Dog>>() {
             @Override
-            public void onChanged(ArrayList<com.example.ex8.Country> countries) {
+            public void onChanged(ArrayList<com.example.ex8.Dog> countries) {
                 adapter.notifyDataSetChanged();
             }
         });

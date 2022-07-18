@@ -20,8 +20,8 @@ public class CountryXMLParser {
 	final static String KEY_DETAILS="details";
 
 
-	public static ArrayList<com.example.ex8.Country> parseCountries(Context context){
-		ArrayList<com.example.ex8.Country> data = null;
+	public static ArrayList<com.example.ex8.Dog> parseCountries(Context context){
+		ArrayList<com.example.ex8.Dog> data = null;
 		InputStream in = openCountriesFile(context);
 		XmlPullParserFactory xmlFactoryObject;
 		try {
@@ -30,7 +30,7 @@ public class CountryXMLParser {
 		
 				parser.setInput(in, null);
 		        int eventType = parser.getEventType();
-		        com.example.ex8.Country currentCountry = null;
+		        com.example.ex8.Dog currentDog = null;
 		        String inTag = "";
 		        String strTagText = null;
 		
@@ -38,28 +38,31 @@ public class CountryXMLParser {
 		        	inTag = parser.getName();
 		            switch (eventType){
 		                case XmlPullParser.START_DOCUMENT:
-		                	data = new ArrayList<com.example.ex8.Country>();
+		                	data = new ArrayList<com.example.ex8.Dog>();
 		                    break;
 		                case XmlPullParser.START_TAG:
 		                	if (inTag.equalsIgnoreCase(KEY_COUNTRY))
-		                    	currentCountry = new com.example.ex8.Country();
+		                    	currentDog = new com.example.ex8.Dog();
 		                    break;
 		                case XmlPullParser.TEXT:
 		                	strTagText = parser.getText();
 		                	break;
 		                case XmlPullParser.END_TAG:
 		                	if (inTag.equalsIgnoreCase(KEY_COUNTRY))
-		                    	data.add(currentCountry);
+		                    	data.add(currentDog);
 		                	else if (inTag.equalsIgnoreCase(KEY_NAME))
-		                    	currentCountry.name = strTagText;
+		                    	currentDog.name = strTagText;
+		                	/*
 		                	else if (inTag.equalsIgnoreCase(KEY_SHORT))
-		                    	currentCountry.shorty =strTagText;
+		                    	currentDog.shorty =strTagText;
 		                	else if (inTag.equalsIgnoreCase(KEY_FLAG))
-		                    	currentCountry.flag =strTagText;
+		                    	currentDog.flag =strTagText;
 		                	else if (inTag.equalsIgnoreCase(KEY_ANTHEM))
-		                    	currentCountry.anthem =strTagText;
+		                    	currentDog.anthem =strTagText;
+
+		                	 */
 		                	else if (inTag.equalsIgnoreCase(KEY_DETAILS))
-		                    	currentCountry.setDetails(strTagText);
+		                    	currentDog.setDetails(strTagText);
 		            		inTag ="";
 		                	break;	                    
 		            }//switch
@@ -73,7 +76,7 @@ public class CountryXMLParser {
 		AssetManager assetManager = context.getAssets();
 		InputStream in =null;
 		try {
-			in = assetManager.open("countries.xml");
+			in = assetManager.open("dogs.xml");
 		} catch (IOException e) {e.printStackTrace();}
 		return in;
 	}
