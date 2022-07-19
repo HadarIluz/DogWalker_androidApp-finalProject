@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainLauout"
 
-    android:background="#A9ECAB"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/material_on_primary_emphasis_medium"
     android:orientation="horizontal"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -17,9 +17,10 @@
 
     <ImageView
         android:id="@+id/imageFlag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/small_logo"/>
+        android:layout_width="15dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/small_logo" />
 
     <LinearLayout
         android:id="@+id/textLayout"
@@ -33,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Country Name"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
@@ -41,30 +42,5 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Population" />
-        <TextView
-            android:id="@+id/tvOwnerName"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Owner Name"
-            android:layout_marginTop="5dp"
-            android:textColor="#000000"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/tvWalkEvery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Walk Every: "
-            android:layout_marginTop="5dp"
-            android:textColor="#040303"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/tvDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Last Walk: "
-            android:textColor="#050505"
-            android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>

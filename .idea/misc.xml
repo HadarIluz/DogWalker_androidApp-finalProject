@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/haimb/Documents/DogWalker_androidApp-finalProject/app/src/main/res/layout-land/activity_main.xml" value="0.17604166666666668" />
+        <entry key="..\:/Users/haimb/Documents/DogWalker_androidApp-finalProject/app/src/main/res/layout-land/country_item.xml" value="0.17604166666666668" />
+        <entry key="..\:/Users/haimb/Documents/DogWalker_androidApp-finalProject/app/src/main/res/layout-land/dogs_item.xml" value="0.2526455026455027" />
+        <entry key="..\:/Users/haimb/Documents/DogWalker_androidApp-finalProject/app/src/main/res/layout-port/activity_main.xml" value="0.15307971014492755" />
+        <entry key="..\:/Users/haimb/Documents/DogWalker_androidApp-finalProject/app/src/main/res/layout-port/country_item.xml" value="0.22" />
+        <entry key="..\:/Users/haimb/Documents/DogWalker_androidApp-finalProject/app/src/main/res/layout-port/dogs_item.xml" value="0.1" />
+        <entry key="..\:/Users/haimb/Documents/DogWalker_androidApp-finalProject/app/src/main/res/layout-port/frag_1.xml" value="0.15307971014492755" />
+        <entry key="..\:/Users/haimb/Documents/DogWalker_androidApp-finalProject/app/src/main/res/layout/activity_main.xml" value="0.15307971014492755" />
+        <entry key="..\:/Users/haimb/Documents/DogWalker_androidApp-finalProject/app/src/main/res/layout/country_details.xml" value="0.26510416666666664" />
         <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/drawable-anydpi/ic_settings.xml" value="0.1" />
         <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/layout-land/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/iluzh/AndroidStudioProjects/AndroidStudioProjects_LeeHugi/Ex8/app/src/main/res/layout-land/country_item.xml" value="0.1" />

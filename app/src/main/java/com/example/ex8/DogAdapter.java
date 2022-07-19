@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +12,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.preference.PreferenceManager;
@@ -22,13 +19,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 //change
-public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.InnerAdapterCountry> implements LifecycleOwner {
+public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog> implements LifecycleOwner {
     private List<Country> countries;
     private int focusedItem;
     Frag2 frag2;
     MainViewModel viewModel;
 
-    public AdapterCountry(List<Country> countriesList, MainViewModel mainViewModel, int itemSelected) {
+
+    public DogAdapter(List<Country> countriesList, MainViewModel mainViewModel, int itemSelected) {
         countries = countriesList;
         viewModel = mainViewModel;
         focusedItem = itemSelected;
@@ -36,7 +34,7 @@ public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.InnerAda
 
     @NonNull
     @Override
-    public InnerAdapterCountry onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public InnerAdapterDog onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -44,12 +42,12 @@ public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.InnerAda
         View contactView = inflater.inflate(R.layout.country_item, parent, false);
 
         // Return a new holder instance
-        InnerAdapterCountry viewHolder = new InnerAdapterCountry(contactView);
+        InnerAdapterDog viewHolder = new InnerAdapterDog(contactView);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull InnerAdapterCountry holder, int position) {
+    public void onBindViewHolder(@NonNull InnerAdapterDog holder, int position) {
         Country country = countries.get(position);
         if(position == focusedItem){
             holder.itemView.setBackgroundColor(Color.parseColor("#EC96EC"));
@@ -72,13 +70,13 @@ public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.InnerAda
     }
 
     //---------------------------INNER CLASS---------------------------
-    public class InnerAdapterCountry extends RecyclerView.ViewHolder{
+    public class InnerAdapterDog extends RecyclerView.ViewHolder{
         public ImageView imFlag;
         public TextView countryName, population;
         public View itemView;
         public String details;
 
-        public InnerAdapterCountry(@NonNull View itemView) {
+        public InnerAdapterDog(@NonNull View itemView) {
             super(itemView);
             imFlag = (ImageView) itemView.findViewById(R.id.imageFlag);
             countryName = (TextView) itemView.findViewById(R.id.tvCountyName);
@@ -92,8 +90,8 @@ public class AdapterCountry extends RecyclerView.Adapter<AdapterCountry.InnerAda
             population.setText(country.getShorty());
 
             Context context =imFlag.getContext();
-            int id = context.getResources().getIdentifier(country.getFlag(), "drawable", context.getPackageName());
-            imFlag.setImageResource(id);
+            //int id = context.getResources().getIdentifier(country.getFlag(), "drawable", context.getPackageName());
+            //imFlag.setImageResource(id);
 
             details = country.getDetails();
 
