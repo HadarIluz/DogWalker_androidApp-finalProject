@@ -12,12 +12,14 @@
         >
 
         <!-- Start1 -> This is the first activity-->
-        <activity android:name="com.example.finalproject.OpenScreen">
+        <activity android:name="com.example.finalproject.OpenScreen"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <!-- End1  -> This is the first activity-->
 
