@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ex8">
+    package="com.example.finalproject">
 
     <application
         android:allowBackup="true"
@@ -8,10 +8,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Ex8">
+        android:theme="@style/Theme.AppCompat.Light"
+        >
 
         <!-- Start1 -> This is the first activity-->
-        <activity android:name=".OpenScreen">
+        <activity android:name="com.example.finalproject.OpenScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +23,7 @@
 
         <!-- Start2  -> This is the second activity-->
         <activity
-            android:name=".MainActivity">
+            android:name="com.example.finalproject.MainActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

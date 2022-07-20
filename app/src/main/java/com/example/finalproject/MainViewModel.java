@@ -1,4 +1,4 @@
-package com.example.ex8;
+package com.example.finalproject;
 
 import android.app.Application;
 import android.content.SharedPreferences;
@@ -17,12 +17,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 //change
 public class MainViewModel extends AndroidViewModel {
-    private MutableLiveData<ArrayList<com.example.ex8.Country>> countriesLiveData;
-    private ArrayList<com.example.ex8.Country> countries;
+    private MutableLiveData<ArrayList<com.example.finalproject.Country>> countriesLiveData;
+    private ArrayList<com.example.finalproject.Country> countries;
     private MutableLiveData<Integer> itemSelectedLiveData;
     private int itemSelected;
     //------------------file objects-------------------------------
@@ -39,7 +38,7 @@ public class MainViewModel extends AndroidViewModel {
         init(application);
     }
 
-    public MutableLiveData<ArrayList<com.example.ex8.Country>> getCountryMutableLiveData() {
+    public MutableLiveData<ArrayList<com.example.finalproject.Country>> getCountryMutableLiveData() {
         return countriesLiveData;
     }
 

@@ -1,4 +1,4 @@
-package com.example.ex8;
+package com.example.finalproject;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.ex8;
+package com.example.finalproject;
 
 
 import android.content.Context;
@@ -20,8 +20,8 @@ public class CountryXMLParser {
 	final static String KEY_DETAILS="details";
 
 
-	public static ArrayList<com.example.ex8.Country> parseCountries(Context context){
-		ArrayList<com.example.ex8.Country> data = null;
+	public static ArrayList<com.example.finalproject.Country> parseCountries(Context context){
+		ArrayList<com.example.finalproject.Country> data = null;
 		InputStream in = openCountriesFile(context);
 		XmlPullParserFactory xmlFactoryObject;
 		try {
@@ -30,7 +30,7 @@ public class CountryXMLParser {
 		
 				parser.setInput(in, null);
 		        int eventType = parser.getEventType();
-		        com.example.ex8.Country currentCountry = null;
+		        com.example.finalproject.Country currentCountry = null;
 		        String inTag = "";
 		        String strTagText = null;
 		
@@ -38,11 +38,11 @@ public class CountryXMLParser {
 		        	inTag = parser.getName();
 		            switch (eventType){
 		                case XmlPullParser.START_DOCUMENT:
-		                	data = new ArrayList<com.example.ex8.Country>();
+		                	data = new ArrayList<com.example.finalproject.Country>();
 		                    break;
 		                case XmlPullParser.START_TAG:
 		                	if (inTag.equalsIgnoreCase(KEY_COUNTRY))
-		                    	currentCountry = new com.example.ex8.Country();
+		                    	currentCountry = new com.example.finalproject.Country();
 		                    break;
 		                case XmlPullParser.TEXT:
 		                	strTagText = parser.getText();

@@ -1,13 +1,11 @@
-package com.example.ex8;
+package com.example.finalproject;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
@@ -17,7 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 public class DogDetailsFrag extends Fragment implements LifecycleOwner {
     TextView tvDetails;
-    com.example.ex8.MainViewModel viewModel;
+    com.example.finalproject.MainViewModel viewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +34,7 @@ public class DogDetailsFrag extends Fragment implements LifecycleOwner {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         this.tvDetails = view.findViewById(R.id.tvDetails);
-        viewModel = new ViewModelProvider(getActivity()).get(com.example.ex8.MainViewModel.class);
+        viewModel = new ViewModelProvider(getActivity()).get(com.example.finalproject.MainViewModel.class);
 
         viewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         viewModel.getItemSelectedLiveData().observe(getViewLifecycleOwner(), new Observer<Integer>() {

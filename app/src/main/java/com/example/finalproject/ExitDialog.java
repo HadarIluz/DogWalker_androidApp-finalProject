@@ -1,12 +1,10 @@
-package com.example.ex8;
+package com.example.finalproject;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 public class ExitDialog extends DialogFragment {

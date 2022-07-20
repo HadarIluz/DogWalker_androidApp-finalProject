@@ -8,7 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frag1"
-        class="com.example.ex8.Frag1"
+        class="com.example.finalproject.Frag1"
         android:layout_width="320dp"
         android:layout_height="408dp"
         android:layout_marginStart="4dp"
@@ -18,7 +18,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/country_details"
-        class="com.example.ex8.DogDetailsFrag"
+        class="com.example.finalproject.DogDetailsFrag"
         android:layout_width="429dp"
         android:layout_height="415dp"
         android:layout_alignParentEnd="true"

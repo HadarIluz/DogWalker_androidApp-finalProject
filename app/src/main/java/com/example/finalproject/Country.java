@@ -1,4 +1,4 @@
-package com.example.ex8;
+package com.example.finalproject;
 
 public class Country {
 	String name;
@@ -58,7 +58,7 @@ public class Country {
 		return this.details;
 	}
 
-	public int compare(com.example.ex8.Country other) {
+	public int compare(com.example.finalproject.Country other) {
 		return  this.name.compareTo(other.name);
 	}
 

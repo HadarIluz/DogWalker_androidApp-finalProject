@@ -1,4 +1,4 @@
-package com.example.ex8;
+package com.example.finalproject;
 
 import android.content.Context;
 import android.content.SharedPreferences;

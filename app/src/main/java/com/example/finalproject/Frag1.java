@@ -1,6 +1,5 @@
-package com.example.ex8;
+package com.example.finalproject;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Frag1 extends Fragment implements LifecycleOwner {
-    ArrayList<com.example.ex8.Country> countries;
-    com.example.ex8.MainViewModel viewModel;
+    ArrayList<com.example.finalproject.Country> countries;
+    com.example.finalproject.MainViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,7 +28,7 @@ public class Frag1 extends Fragment implements LifecycleOwner {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        viewModel = new ViewModelProvider(getActivity()).get(com.example.ex8.MainViewModel.class);
+        viewModel = new ViewModelProvider(getActivity()).get(com.example.finalproject.MainViewModel.class);
 
         // Lookup the recyclerview in activity layout
         RecyclerView rvCountry = (RecyclerView) view.findViewById(R.id.rvCountries);
@@ -39,9 +36,9 @@ public class Frag1 extends Fragment implements LifecycleOwner {
         // Create adapter passing in the sample user data
         DogAdapter adapter = new DogAdapter(viewModel.getCountryMutableLiveData().getValue(), viewModel, viewModel.getItemSelectedLiveData().getValue());
 
-        viewModel.getCountryMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<com.example.ex8.Country>>() {
+        viewModel.getCountryMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<com.example.finalproject.Country>>() {
             @Override
-            public void onChanged(ArrayList<com.example.ex8.Country> countries) {
+            public void onChanged(ArrayList<com.example.finalproject.Country> countries) {
                 adapter.notifyDataSetChanged();
             }
         });

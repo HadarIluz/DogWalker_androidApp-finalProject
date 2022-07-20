@@ -1,4 +1,4 @@
-package com.example.ex8;
+package com.example.finalproject;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.ex8", appContext.getPackageName());
+        assertEquals("com.example.rootProject.name = ", appContext.getPackageName());
     }
 }
