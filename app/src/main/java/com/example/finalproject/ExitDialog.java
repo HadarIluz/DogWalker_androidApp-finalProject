@@ -2,9 +2,12 @@ package com.example.finalproject;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 public class ExitDialog extends DialogFragment {
@@ -18,8 +21,9 @@ public class ExitDialog extends DialogFragment {
         return frag;
     }
 
-
-    public Dialog onCreateDialog( Bundle savedInstanceState) {
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         String title = getArguments().getString("title");
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         alertDialogBuilder.setTitle(title);
@@ -27,9 +31,9 @@ public class ExitDialog extends DialogFragment {
         alertDialogBuilder.setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //kill the app
-                //android.os.Process.killProcess(android.os.Process.myPid());
-                System.exit(1);
+                getActivity().moveTaskToBack(true);
+                getActivity().finish();
+                System.exit(0);
             }
         });
         alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
