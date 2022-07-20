@@ -60,6 +60,9 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
 
     @Override
     public int getItemCount() {
+        if(dogs==null){
+            return 0;
+        }
         return dogs.size();
     }
 

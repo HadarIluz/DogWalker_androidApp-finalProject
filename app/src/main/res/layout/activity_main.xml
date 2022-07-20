@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <fragment
-        android:id="@+id/frag1"
+        android:id="@+id/MainActivity"
         class="com.example.ex8.FragCycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

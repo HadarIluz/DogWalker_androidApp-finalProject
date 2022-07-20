@@ -22,7 +22,7 @@ public class OpenScreen extends AppCompatActivity {
             public void run() {
                 startActivity(new Intent(OpenScreen.this ,MainActivity.class ));
             }
-        }, 4000);
+        }, 1000);
     }
 
 }
