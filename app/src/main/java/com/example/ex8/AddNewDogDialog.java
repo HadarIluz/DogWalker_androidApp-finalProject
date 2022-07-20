@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -22,9 +23,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.util.Calendar;
+
 public class AddNewDogDialog extends DialogFragment {
     DatePickerDialog picker;
     private static String file_path;
+    //in this file all the data about the dogs will saved.
     public static final String FILE_NAME="dogs_data.srl";
 
     public AddNewDogDialog() {}
@@ -38,14 +42,7 @@ public class AddNewDogDialog extends DialogFragment {
         return frag;
     }
 
-//    public void show(FragmentManager fm1, String fragment_alert) {
-//    }
-
-
-
-
-    //main
-
+    //main:
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -126,7 +123,7 @@ public class AddNewDogDialog extends DialogFragment {
         View view;
         view = this.getLayoutInflater().inflate(R.layout.spinner, null);
         Spinner spinner = (Spinner) view.findViewById(R.id.walkEveryS);
-        String[] walkEvery = { "1 Day", "2 Day", "3 Day", "4 Day", "5 Day", "6 Day", "7 Day"};
+        String[] walkEvery = { "1 Day", "2 Days", "3 Days", "4 Days", "5 Days", "6 Days", "Week"};
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, walkEvery);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // attaching data adapter to spinner
@@ -145,7 +142,22 @@ public class AddNewDogDialog extends DialogFragment {
         return spinner;
     }
 
+//Open Calendar for the user to select a date.
     private void onClickDatePicker(View view, EditText edNextWalk) {
+        final Calendar cldr = Calendar.getInstance();
+        int day = cldr.get(Calendar.DAY_OF_MONTH);
+        int month = cldr.get(Calendar.MONTH);
+        int year = cldr.get(Calendar.YEAR);
+        // date picker dialog
+        picker = new DatePickerDialog(view.getContext(),
+                new DatePickerDialog.OnDateSetListener() { // second Listener method
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        edNextWalk.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                    }
+                }, year, month, day);
+        picker.getDatePicker().setMaxDate(System.currentTimeMillis());
+        picker.show();
     }
 
     private boolean isDogFieldsValid(EditText edDogName, EditText edOwnerName, EditText edDogDetails, EditText edNextWalk){
@@ -165,6 +177,7 @@ public class AddNewDogDialog extends DialogFragment {
             showToast("Enter Dog's next Walk!", getContext());
             return false;
         }
+        //TODO:
         /*
         for (Dog dog : DogAdapter.dogs) {
             if(edDogName.getText().toString().compareTo(dog.getName()) == 0){
