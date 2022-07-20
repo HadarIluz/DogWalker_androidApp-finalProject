@@ -1,5 +1,6 @@
 package com.example.ex8;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Frag1 extends Fragment implements LifecycleOwner {
     ArrayList<com.example.ex8.Country> countries;
@@ -20,6 +23,8 @@ public class Frag1 extends Fragment implements LifecycleOwner {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        /*-->Informs the operating system that there is a menu.*/
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.frag_1, container,false);
     }
 

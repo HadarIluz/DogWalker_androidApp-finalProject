@@ -13,8 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
-public class Frag2 extends Fragment implements LifecycleOwner {
+public class DogDetailsFrag extends Fragment implements LifecycleOwner {
     TextView tvDetails;
     com.example.ex8.MainViewModel viewModel;
 
@@ -27,6 +28,8 @@ public class Frag2 extends Fragment implements LifecycleOwner {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        /*-->Informs the operating system that there is a menu.*/
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.country_details, container,false);
     }
 
@@ -35,7 +38,7 @@ public class Frag2 extends Fragment implements LifecycleOwner {
         this.tvDetails = view.findViewById(R.id.tvDetails);
         viewModel = new ViewModelProvider(getActivity()).get(com.example.ex8.MainViewModel.class);
 
-        //viewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+        viewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         viewModel.getItemSelectedLiveData().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {

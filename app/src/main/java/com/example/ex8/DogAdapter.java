@@ -22,7 +22,7 @@ import java.util.List;
 public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog> implements LifecycleOwner {
     private List<Country> countries;
     private int focusedItem;
-    Frag2 frag2;
+    DogDetailsFrag dogDetailsFrag;
     MainViewModel viewModel;
 
 
@@ -113,19 +113,19 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
-                        .replace(R.id.fragContainer, Frag2.class, null, "countryDetails")
+                        .replace(R.id.fragContainer, DogDetailsFrag.class, null, "countryDetails")
                         .addToBackStack("BBB")
                         .commit();
                 ((AppCompatActivity)context).getSupportFragmentManager().executePendingTransactions();
-                frag2 = (Frag2) ((AppCompatActivity)context).getSupportFragmentManager().findFragmentByTag("countryDetails");
+                dogDetailsFrag = (DogDetailsFrag) ((AppCompatActivity)context).getSupportFragmentManager().findFragmentByTag("countryDetails");
             }
             else{
                 try{
-                    frag2 = (Frag2)((AppCompatActivity)context).getSupportFragmentManager().findFragmentById(R.id.country_details);
+                    dogDetailsFrag = (DogDetailsFrag)((AppCompatActivity)context).getSupportFragmentManager().findFragmentById(R.id.country_details);
                 } catch (Exception e){
                     ((AppCompatActivity)context).getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.country_details, Frag2.class, null, "countryDetails").addToBackStack("BBB")
+                            .replace(R.id.country_details, DogDetailsFrag.class, null, "countryDetails").addToBackStack("BBB")
                             .commit();
                 }
 

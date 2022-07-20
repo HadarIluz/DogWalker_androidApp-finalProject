@@ -24,5 +24,4 @@ public class OpenScreen extends AppCompatActivity {
             }
         }, 4000);
     }
-
 }
