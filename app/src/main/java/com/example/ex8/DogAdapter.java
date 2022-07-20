@@ -39,7 +39,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.country_item, parent, false);
+        View contactView = inflater.inflate(R.layout.dog_item, parent, false);
 
         // Return a new holder instance
         InnerAdapterDog viewHolder = new InnerAdapterDog(contactView);
@@ -78,8 +78,8 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
 
         public InnerAdapterDog(@NonNull View itemView) {
             super(itemView);
-            imFlag = (ImageView) itemView.findViewById(R.id.imageFlag);
-            countryName = (TextView) itemView.findViewById(R.id.tvCountyName);
+            imFlag = (ImageView) itemView.findViewById(R.id.imageDog);
+            countryName = (TextView) itemView.findViewById(R.id.tvDogName);
             population = (TextView) itemView.findViewById(R.id.tvPopulation);
             this.itemView = itemView;
             itemView.setClickable(true);

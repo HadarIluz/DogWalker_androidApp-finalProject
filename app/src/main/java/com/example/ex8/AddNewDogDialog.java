@@ -156,7 +156,7 @@ public class AddNewDogDialog extends DialogFragment {
                         edNextWalk.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                     }
                 }, year, month, day);
-        picker.getDatePicker().setMaxDate(System.currentTimeMillis());
+        //picker.getDatePicker().setMinDate(System.currentTimeMillis());
         picker.show();
     }
 
