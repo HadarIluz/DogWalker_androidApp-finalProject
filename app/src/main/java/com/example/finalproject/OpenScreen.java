@@ -10,22 +10,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class OpenScreen extends Activity {
+public class OpenScreen extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 3000;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.open_screen_app);
-
-        new Handler().postDelayed(new Runnable() {
-
+        new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 startActivity(new Intent(OpenScreen.this, MainActivity.class));
-                OpenScreen.this.finish();
             }
-        }, SPLASH_TIME_OUT);
+        }, 4000);
     }
 }
