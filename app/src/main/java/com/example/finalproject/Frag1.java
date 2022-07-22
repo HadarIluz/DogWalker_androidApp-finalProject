@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,20 +24,22 @@ public class Frag1 extends Fragment implements LifecycleOwner {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         /*-->Informs the operating system that there is a menu.*/
         setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.frag_1, container,false);
+        return inflater.inflate(R.layout.frag_1, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        Log.d("**** in start Frag1 ****", "**** in start Frag1 ****");
 
         viewModel = new ViewModelProvider(getActivity()).get(com.example.finalproject.MainViewModel.class);
-
-        // Lookup the recyclerview in activity layout
-        RecyclerView rvCountry = (RecyclerView) view.findViewById(R.id.rvCountries);
+        Log.d("**** in start Frag1 after viewModel ****", "**** in start Frag1 after viewModel ****");
+        // Lookup the recyclerview in activity layout(id of frag_1.xml)
+        RecyclerView rvDog = (RecyclerView) view.findViewById(R.id.rvCountries);
 
         // Create adapter passing in the sample user data
         adapter = new DogAdapter(viewModel.getCountryMutableLiveData().getValue(), viewModel, viewModel.getItemSelectedLiveData().getValue());
 
+        //observer that will notify if any change has happened in order to save data.
         viewModel.getCountryMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<com.example.finalproject.Country>>() {
             @Override
             public void onChanged(ArrayList<com.example.finalproject.Country> countries) {
@@ -44,20 +47,18 @@ public class Frag1 extends Fragment implements LifecycleOwner {
             }
         });
 
+        //observer that will notify if we select new item.
         viewModel.getItemSelectedLiveData().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
                 adapter.notifyDataSetChanged();
             }
         });
-
+        Log.d("**** in Frag1 ****", "**** in Frag1 ****");
         // Attach the adapter to the recyclerview to populate items
-        rvCountry.setAdapter(adapter);
+        rvDog.setAdapter(adapter);
         // Set layout manager to position the items
-        rvCountry.setLayoutManager(new LinearLayoutManager(getContext()));
-        // That's all!
-
+        rvDog.setLayoutManager(new LinearLayoutManager(getContext()));
         super.onViewCreated(view, savedInstanceState);
     }
-
 }
