@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class Frag1 extends Fragment implements LifecycleOwner {
     ArrayList<com.example.finalproject.Country> countries;
     com.example.finalproject.MainViewModel viewModel;
+    public static DogAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class Frag1 extends Fragment implements LifecycleOwner {
         RecyclerView rvCountry = (RecyclerView) view.findViewById(R.id.rvCountries);
 
         // Create adapter passing in the sample user data
-        DogAdapter adapter = new DogAdapter(viewModel.getCountryMutableLiveData().getValue(), viewModel, viewModel.getItemSelectedLiveData().getValue());
+        adapter = new DogAdapter(viewModel.getCountryMutableLiveData().getValue(), viewModel, viewModel.getItemSelectedLiveData().getValue());
 
         viewModel.getCountryMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<com.example.finalproject.Country>>() {
             @Override
