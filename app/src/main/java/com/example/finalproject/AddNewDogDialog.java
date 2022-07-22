@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -91,19 +92,24 @@ public class AddNewDogDialog extends DialogFragment {
         alertDialogBuilder.setPositiveButton("Save",  new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(isDogFieldsValid(edDogName, edOwnerName , edDogDetails, edNextWalk)){
-                    Dog dog = new Dog(edDogName.getText().toString(),edOwnerName.getText().toString(), edNextWalk.getText().toString(), edDogDetails.getText().toString(), spinner.getSelectedItem().toString());
+                Log.i("******* Enter in on click dialog dog ***********","******* Enter in on click dialog dog ***********");
+
+                //if(isDogFieldsValid(edDogName, edOwnerName , edDogDetails, edNextWalk)){
+                    //Dog dog = new Dog(edDogName.getText().toString(),edOwnerName.getText().toString(), edNextWalk.getText().toString(), edDogDetails.getText().toString(), spinner.getSelectedItem().toString());
+                    Country country = new Country("a","a","a");
                     //add the Dog into array of dogs - edit adapter list
-                /*   //TODO:THINK HOW
-                    DogAdapter.dogs.add(dog);
-                    // add to SP (json type)
+                   //TODO:THINK HOW
+                    DogAdapter.countries.add(country);
+                    Log.d("the new list is",DogAdapter.countries.toString()+"aa");
+                    Frag1.adapter.notifyDataSetChanged();
+                    /*// add to SP (json type)
                     ReadWriteHandler.writeToSP(DogAdapter.dogs);
                     // add notify adapter
-                    FragCycle.adapter.notifyDataSetChanged();
+                    FragCycle.adapter.notifyDataSetChanged();*/
                     dialog.dismiss();
 
-                 */
-                }
+
+               // }
             }
         });
         alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -159,7 +165,7 @@ public class AddNewDogDialog extends DialogFragment {
         picker.show();
     }
 
-    private boolean isDogFieldsValid(EditText edDogName, EditText edOwnerName, EditText edDogDetails, EditText edNextWalk){
+    /*private boolean isDogFieldsValid(EditText edDogName, EditText edOwnerName, EditText edDogDetails, EditText edNextWalk){
         if (edDogName.getText().toString().isEmpty()) {
             showToast("Enter Dog's name!", getContext());
             return false;
@@ -177,16 +183,16 @@ public class AddNewDogDialog extends DialogFragment {
             return false;
         }
         //TODO:
-        /*
+
         for (Dog dog : DogAdapter.dogs) {
             if(edDogName.getText().toString().compareTo(dog.getName()) == 0){
                 showToast("This dog's name all ready exist!", getContext());
                 return false;
             }
         }
-        */
+
         return true;
-    }
+    }*/
 
     private void showToast(String str, Context context) {
         Toast toast = Toast.makeText(context, str, Toast.LENGTH_SHORT);
