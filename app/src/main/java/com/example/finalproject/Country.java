@@ -47,6 +47,14 @@ public class Country {
 		this.anthem = anthem;
 	}
 
+
+	public Country(String name, String flag, String shorty,String details){
+		this.name = name;
+		this.flag = flag;
+		this.shorty=shorty;
+		this.details=details;
+
+	}
 	public Country() {
 		// TODO Auto-generated constructor stub
 	}

@@ -96,7 +96,7 @@ public class AddNewDogDialog extends DialogFragment {
 
                 //if(isDogFieldsValid(edDogName, edOwnerName , edDogDetails, edNextWalk)){
                     //Dog dog = new Dog(edDogName.getText().toString(),edOwnerName.getText().toString(), edNextWalk.getText().toString(), edDogDetails.getText().toString(), spinner.getSelectedItem().toString());
-                    Country country = new Country("a","a","a");
+                    Country country = new Country("a","a","a","hello from details");
                     //add the Dog into array of dogs - edit adapter list
                    //TODO:THINK HOW
                     DogAdapter.countries.add(country);

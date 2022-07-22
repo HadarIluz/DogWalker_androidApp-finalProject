@@ -20,26 +20,26 @@ import java.util.ArrayList;
 import java.util.Map;
 //change
 public class MainViewModel extends AndroidViewModel {
-    private MutableLiveData<ArrayList<com.example.finalproject.Country>> countriesLiveData;
-    private ArrayList<com.example.finalproject.Country> countries;
+    private MutableLiveData<ArrayList<com.example.finalproject.Country>> dogsLiveData;
+    private ArrayList<com.example.finalproject.Country> dogs;
     private MutableLiveData<Integer> itemSelectedLiveData;
     private int itemSelected;
     //------------------file objects-------------------------------
     private static String file_path;
-    public static final String FILE_NAME="remove_countries.txt";
-    private static ArrayList<String> remove_countries;
-    private ArrayList<Country> tempCountryList;
+    public static final String FILE_NAME="remove_dogs.txt";
+    private static ArrayList<String> remove_dogs;
+    private ArrayList<Country> tempDogList;
     //--------------------------------------------------------------
 
     public MainViewModel(@NonNull Application application) {
         super(application);
-        countriesLiveData = new MutableLiveData<>();
+        dogsLiveData = new MutableLiveData<>();
         itemSelectedLiveData = new MutableLiveData<>();
         init(application);
     }
 
     public MutableLiveData<ArrayList<com.example.finalproject.Country>> getCountryMutableLiveData() {
-        return countriesLiveData;
+        return dogsLiveData;
     }
 
     public MutableLiveData<Integer> getItemSelectedLiveData() {
@@ -49,20 +49,20 @@ public class MainViewModel extends AndroidViewModel {
     public void init(Application application){
         itemSelected = -1;
         itemSelectedLiveData.setValue(itemSelected);
-        countries = CountryXMLParser.parseCountries(application.getApplicationContext());
-        countriesLiveData.setValue(countries);
+        dogs = new ArrayList<com.example.finalproject.Country>();
+        dogsLiveData.setValue(dogs);
         // initially files params
         file_path = application.getApplicationContext().getFilesDir().getAbsolutePath();
-        tempCountryList = new ArrayList<Country>();
+        tempDogList = new ArrayList<Country>();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(application.getApplicationContext());
         boolean remember = prefs.getBoolean("switch_preference_1",false);
 
         //--------SharedPreferences-----------
         //create array list of all the countries wee removed
-        remove_countries = new ArrayList<>();
+        remove_dogs = new ArrayList<>();
         for(Map.Entry<String,?> entry : prefs.getAll().entrySet()){
             if (entry.getValue() instanceof String) {
-                remove_countries.add(String.valueOf(entry.getValue()));
+                remove_dogs.add(String.valueOf(entry.getValue()));
             }
         }
         //-----End SharedPreferences-----------
@@ -73,14 +73,14 @@ public class MainViewModel extends AndroidViewModel {
 
         if(remember == true)
         {
-            for (Country country : countriesLiveData.getValue()) {
+            for (Country country : dogsLiveData.getValue()) {
                 //if the country dont show in the list of the cuntries we have been deleted so we add him/
-                if (!remove_countries.contains(country.getName())) {
-                    tempCountryList.add(country);
+                if (!remove_dogs.contains(country.getName())) {
+                    tempDogList.add(country);
                 }
             }
             //update the countriesLiveData we the current new data.
-            countriesLiveData.setValue(tempCountryList);
+            dogsLiveData.setValue(tempDogList);
         }
         else
         {
