@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 //change
 public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog> implements LifecycleOwner {
-    private List<Country> countries;
+    public static List<Country> countries;
     private int focusedItem;
     DogDetailsFrag dogDetailsFrag;
     MainViewModel viewModel;
