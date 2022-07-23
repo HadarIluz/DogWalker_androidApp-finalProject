@@ -108,7 +108,6 @@ public class AddNewDogDialog extends DialogFragment {
                     Dog dog = new Dog(edDogName.getText().toString(), edOwnerName.getText().toString(), edNextWalk.getText().toString(), edDogDetails.getText().toString(), spinner.getSelectedItem().toString());
 
                     //add the Dog into array of dogs - edit adapter list
-
                     DogAdapter.dogs.add(dog);
                     //Log.d("the new list is",DogAdapter.dogs.toString() );
 

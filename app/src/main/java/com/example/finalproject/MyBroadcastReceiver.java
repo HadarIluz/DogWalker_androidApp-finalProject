@@ -13,7 +13,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String isWaterNeeded = ReadWriteHandler.readFromRAW(context);
         if(isWaterNeeded.compareTo("1") == 0){
-            // create an array list for all the late irrigation plants
+            // create an array list for all the next dogs that need to take to a walk.
             ArrayList<Dog> dogs = ReadWriteHandler.readFromSP();
             for(Dog dog: dogs){
                 if (dog.checkWalkNeeded() && (!dogsWalkeLArrayList.contains(dog))){
