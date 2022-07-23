@@ -74,7 +74,7 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btnUpdateWalk"
+            android:id="@+id/btnUpdateNextWalk"
             android:layout_width="80dp"
             android:layout_height="60dp"
             android:layout_gravity="center"

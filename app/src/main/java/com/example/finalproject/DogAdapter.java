@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -102,6 +103,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
         public ImageView imFlag;
         public View itemView;
         public String details;
+        public Button btnWalkUpdate;
 
         public InnerAdapterDog(@NonNull View itemView) {
             super(itemView);
@@ -112,6 +114,8 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             tvOwnerName = (TextView) itemView.findViewById(R.id.tvOwnerName);
             tvNextWalk = (TextView) itemView.findViewById(R.id.tvDate);
             tvWalkEvery = (TextView) itemView.findViewById(R.id.tvWalkEvery);
+
+            btnWalkUpdate = (Button) itemView.findViewById(R.id.btnUpdateNextWalk);
 
             this.itemView = itemView;
             itemView.setClickable(true);
@@ -137,7 +141,18 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
                 onLongClickDeleteDog(position);
                 return false;
             });
+
+            btnWalkUpdate.setOnClickListener((view)->{
+                clickNextWalkUpdate(position);
+            });
         }
+
+        private void clickNextWalkUpdate(int position) {
+
+
+
+        }
+
 
         private void onClickShowDetails(int position){
             Context context = itemView.getContext();
