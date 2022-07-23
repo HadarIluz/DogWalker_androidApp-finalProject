@@ -99,13 +99,14 @@ public class AddNewDogDialog extends DialogFragment {
                     Country country = new Country("a","a","a","hello from details");
                     //add the Dog into array of dogs - edit adapter list
                    //TODO:THINK HOW
-                    DogAdapter.countries.add(country);
-                    Log.d("the new list is",DogAdapter.countries.toString()+"aa");
-                    Frag1.adapter.notifyDataSetChanged();
-                    /*// add to SP (json type)
+                    DogAdapter.dogs.add(country);
+                    Log.d("the new list is",DogAdapter.dogs.toString()+"aa");
+
+                    // add to SP (json type)
                     ReadWriteHandler.writeToSP(DogAdapter.dogs);
+                    Frag1.adapter.notifyDataSetChanged();
                     // add notify adapter
-                    FragCycle.adapter.notifyDataSetChanged();*/
+                    //FragCycle.adapter.notifyDataSetChanged();
                     dialog.dismiss();
 
 

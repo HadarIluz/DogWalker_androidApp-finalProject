@@ -20,14 +20,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 //change
 public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog> implements LifecycleOwner {
-    public static List<Country> countries;
+    public static List<Country> dogs;
     private int focusedItem;
     DogDetailsFrag dogDetailsFrag;
     MainViewModel viewModel;
 
 
-    public DogAdapter(List<Country> countriesList, MainViewModel mainViewModel, int itemSelected) {
-        countries = countriesList;
+    public DogAdapter(List<Country> dogsList, MainViewModel mainViewModel, int itemSelected) {
+        dogs = dogsList;
         viewModel = mainViewModel;
         focusedItem = itemSelected;
     }
@@ -48,7 +48,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
 
     @Override
     public void onBindViewHolder(@NonNull InnerAdapterDog holder, int position) {
-        Country country = countries.get(position);
+        Country country = dogs.get(position);
         if(position == focusedItem){
             holder.itemView.setBackgroundColor(Color.parseColor("#EC96EC"));
         } else{
@@ -60,7 +60,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
 
     @Override
     public int getItemCount() {
-        return countries.size();
+        return dogs.size();
     }
 
     @NonNull
@@ -136,7 +136,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             //-----SharedPreferences-----------
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(viewModel.getApplication().getApplicationContext());
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(viewModel.getCountryMutableLiveData().getValue().get(position).getName(),viewModel.getCountryMutableLiveData().getValue().get(position).getName());
+            editor.putString(viewModel.getDogMutableLiveData().getValue().get(position).getName(),viewModel.getDogMutableLiveData().getValue().get(position).getName());
             editor.commit();
             //------End SharedPreferences------
 
@@ -144,7 +144,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             //viewModel.writeData(viewModel.getCountryMutableLiveData().getValue().get(position).getName());
             //-----End Raw file-------
 
-            countries.remove(position);
+            dogs.remove(position);
             if(focusedItem == position){
                 focusedItem = -1;
                 viewModel.getItemSelectedLiveData().setValue(-1);

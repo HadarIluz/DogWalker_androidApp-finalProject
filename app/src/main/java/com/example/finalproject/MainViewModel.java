@@ -8,6 +8,9 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.preference.PreferenceManager;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +19,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 //change
 public class MainViewModel extends AndroidViewModel {
@@ -38,7 +43,7 @@ public class MainViewModel extends AndroidViewModel {
         init(application);
     }
 
-    public MutableLiveData<ArrayList<com.example.finalproject.Country>> getCountryMutableLiveData() {
+    public MutableLiveData<ArrayList<com.example.finalproject.Country>> getDogMutableLiveData() {
         return dogsLiveData;
     }
 
@@ -55,43 +60,22 @@ public class MainViewModel extends AndroidViewModel {
         file_path = application.getApplicationContext().getFilesDir().getAbsolutePath();
         tempDogList = new ArrayList<Country>();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(application.getApplicationContext());
-        boolean remember = prefs.getBoolean("switch_preference_1",false);
+
 
         //--------SharedPreferences-----------
-        //create array list of all the countries wee removed
-        remove_dogs = new ArrayList<>();
-        for(Map.Entry<String,?> entry : prefs.getAll().entrySet()){
-            if (entry.getValue() instanceof String) {
-                remove_dogs.add(String.valueOf(entry.getValue()));
-            }
-        }
+        /* Read all the dogs from the sp file and will show them when the app is start */
+        tempDogList = ReadWriteHandler.readFromSP();
+        dogsLiveData.setValue(tempDogList);
         //-----End SharedPreferences-----------
 
         //---------Raw file-----------
-        //remove_countries = new ArrayList<String>(Arrays.asList(readFile().split("\n")));
+        //remove_dogs = new ArrayList<String>(Arrays.asList(readFile().split("\n")));
         //-----End Raw file-----------
 
-        if(remember == true)
-        {
-            for (Country country : dogsLiveData.getValue()) {
-                //if the country dont show in the list of the cuntries we have been deleted so we add him/
-                if (!remove_dogs.contains(country.getName())) {
-                    tempDogList.add(country);
-                }
-            }
-            //update the countriesLiveData we the current new data.
-            dogsLiveData.setValue(tempDogList);
-        }
-        else
-        {
-        //if we select false we clear the SP file.
-            //-----SharedPreferences-----------
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.clear();
-            editor.commit();
-            //-------End SharedPreferences------
 
-            //-----Raw file-----------
+
+
+        //-----Raw file-----------
 //            try {
 //                FileOutputStream writer = new FileOutputStream(file_path + File.separator + FILE_NAME);
 //                writer.write(("").getBytes());
@@ -99,8 +83,8 @@ public class MainViewModel extends AndroidViewModel {
 //            }catch (Exception e){
 //                e.printStackTrace();
 //            }
-            //-----End Raw file-----------
-        }
+        //-----End Raw file-----------
+
     }
 
     //---------function for raw file---------
