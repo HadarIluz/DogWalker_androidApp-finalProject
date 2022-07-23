@@ -120,7 +120,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
         public void BindData(int position, Dog dog){
             tvDogName.setText(dog.getName());
             tvOwnerName.setText("Owner`s Name: " + dog.getOwnerName());
-            //tvNextWalk.setText("Next Walk: " + dog.getNextWalkDate().getDate() + "/" + dog.getNextWalkDate().getMonth() + "/" + dog.getNextWalkDate().getYear());
+            tvNextWalk.setText("Next Walk: " + dog.getNextWalkDate().getDate() + "/" + dog.getNextWalkDate().getMonth() + "/" + dog.getNextWalkDate().getYear());
             tvWalkEvery.setText("Walk Every: " + dog.getWalkEvery());
 
             Context context =imFlag.getContext();

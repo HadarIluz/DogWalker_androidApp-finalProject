@@ -89,6 +89,7 @@ public class AddNewDogDialog extends DialogFragment {
         final TextView tvWalk = new TextView(this.getContext());
         tvWalk.setText("Walk Every:");
 
+        //add all items to dialog:
         layout.addView(edDogName);
         layout.addView(edOwnerName);
         layout.addView(edDogDetails);
