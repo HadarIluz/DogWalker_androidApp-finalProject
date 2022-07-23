@@ -19,7 +19,7 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/dog_details"
         class="com.example.finalproject.DogDetailsFrag"
-        android:layout_width="429dp"
+        android:layout_width="390dp"
         android:layout_height="415dp"
         android:layout_alignParentEnd="true"
         android:background="?android:attr/detailsElementBackground"
