@@ -96,23 +96,6 @@ public class Dog {
 
     public int returnWaterEveryAsInt(){
         switch (getWalkEvery()){
-//            case "Day":
-//                return 1;
-//            case "2 Days":
-//                return 2;
-//            case "5 Days":
-//                return 5;
-//            case "Week":
-//                return 7;
-//            case "2 Weeks":
-//                return 14;
-//            case "Month":
-//                return 30;
-            //{"8 hours", "12 hours", "1 Day", "2 Day", "3 Day", "4 Day"};
-            case "8 hours":
-                return 8;
-            case "12 hours":
-                return 12;
             case "1 Day":
                 return 1;
             case "2 Day":
@@ -121,7 +104,12 @@ public class Dog {
                 return 3;
             case "4 Day":
                 return 4;
-
+            case "5 Day":
+                return 5;
+            case "6 Day":
+                return 6;
+            case "7 Day":
+                return 7;
         }
         return 0;
     }

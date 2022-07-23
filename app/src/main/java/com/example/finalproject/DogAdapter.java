@@ -1,7 +1,6 @@
 package com.example.finalproject;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -148,17 +146,25 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
 
         private void onLongClick(int position){
             //-----SharedPreferences-----------
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(viewModel.getApplication().getApplicationContext());
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(viewModel.getDogMutableLiveData().getValue().get(position).getName(),viewModel.getDogMutableLiveData().getValue().get(position).getName());
-            editor.commit();
+            // delete the plant
+            if(MyBroadcastReceiver.dogsWalkeLArrayList.contains(dogs.get(position)))
+                MyBroadcastReceiver.dogsWalkeLArrayList.remove(dogs.get(position));
+            dogs.remove(position);
+            ReadWriteHandler.writeToSP(dogs);
+            notifyDataSetChanged();
+
+
+            //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(viewModel.getApplication().getApplicationContext());
+            //SharedPreferences.Editor editor = sharedPreferences.edit();
+            //editor.putString(viewModel.getDogMutableLiveData().getValue().get(position).getName(),viewModel.getDogMutableLiveData().getValue().get(position).getName());
+            //editor.commit();
             //------End SharedPreferences------
 
             //-----Raw file-----------
             //viewModel.writeData(viewModel.getCountryMutableLiveData().getValue().get(position).getName());
             //-----End Raw file-------
 
-            dogs.remove(position);
+            //dogs.remove(position);
             if(focusedItem == position){
                 focusedItem = -1;
                 viewModel.getItemSelectedLiveData().setValue(-1);
