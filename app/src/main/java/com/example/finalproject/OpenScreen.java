@@ -1,9 +1,7 @@
 package com.example.finalproject;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,7 +10,9 @@ import java.util.TimerTask;
 
 public class OpenScreen extends AppCompatActivity {
 
-
+/*
+Shows the Open screen of the application for 4 seconds and then enters the application by the MainActivity.class.
+ */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

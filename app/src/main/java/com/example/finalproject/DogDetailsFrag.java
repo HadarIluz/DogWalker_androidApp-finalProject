@@ -31,6 +31,7 @@ public class DogDetailsFrag extends Fragment implements LifecycleOwner {
         return inflater.inflate(R.layout.dog_details, container,false);
     }
 
+    /*Makes sure we save the specific line the user is stand on when turning the cell phone over.*/
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         this.tvDetails = view.findViewById(R.id.tvDetails);

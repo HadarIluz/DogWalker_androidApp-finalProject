@@ -9,6 +9,10 @@ import java.util.ArrayList;
 public class MyBroadcastReceiver extends BroadcastReceiver {
     public static ArrayList<Dog> dogsWalkeLArrayList = new ArrayList<>();
 
+    /*
+    Broadcast Receiver: Dynamic Registration -> we still don`t add something related to MyBroadcastReceiver in the manifests.
+    This method is called when the BroadcastReceiver is receiving an Intent broadcast.
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
         String isWaterNeeded = ReadWriteHandler.readFromRAW(context);

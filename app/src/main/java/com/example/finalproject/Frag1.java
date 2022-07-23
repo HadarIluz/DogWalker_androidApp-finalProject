@@ -47,7 +47,7 @@ public class Frag1 extends Fragment implements LifecycleOwner {
             }
         });
 
-        //observer that will notify if we select new item.
+//### observer that will notify if we select new item. ###
         viewModel.getItemSelectedLiveData().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
@@ -55,6 +55,7 @@ public class Frag1 extends Fragment implements LifecycleOwner {
             }
         });
         Log.d("**** in Frag1 ****", "**** in Frag1 ****");
+
         // Attach the adapter to the recyclerview to populate items
         rvDog.setAdapter(adapter);
         // Set layout manager to position the items
