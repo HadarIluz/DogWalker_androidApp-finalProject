@@ -17,9 +17,9 @@
 
     <ImageView
         android:id="@+id/imageDog"
-        android:layout_width="120dp"
+        android:layout_width="80dp"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/small_logo"/>
+        app:srcCompat="@drawable/small_logo" />
 
     <LinearLayout
         android:id="@+id/textLayout"
@@ -68,9 +68,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="10dp"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:orientation="vertical">
 
         <Button
