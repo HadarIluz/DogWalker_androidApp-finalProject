@@ -28,7 +28,7 @@ public class DogDetailsFrag extends Fragment implements LifecycleOwner {
                              Bundle savedInstanceState) {
         /*-->Informs the operating system that there is a menu.*/
         setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.country_details, container,false);
+        return inflater.inflate(R.layout.dog_details, container,false);
     }
 
     @Override

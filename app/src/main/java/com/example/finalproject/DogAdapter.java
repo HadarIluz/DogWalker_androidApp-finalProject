@@ -127,19 +127,19 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
-                        .replace(R.id.fragContainer, DogDetailsFrag.class, null, "countryDetails")
+                        .replace(R.id.fragContainer, DogDetailsFrag.class, null, "dogDetails")
                         .addToBackStack("BBB")
                         .commit();
                 ((AppCompatActivity)context).getSupportFragmentManager().executePendingTransactions();
-                dogDetailsFrag = (DogDetailsFrag) ((AppCompatActivity)context).getSupportFragmentManager().findFragmentByTag("countryDetails");
+                dogDetailsFrag = (DogDetailsFrag) ((AppCompatActivity)context).getSupportFragmentManager().findFragmentByTag("dogDetails");
             }
             else{
                 try{
-                    dogDetailsFrag = (DogDetailsFrag)((AppCompatActivity)context).getSupportFragmentManager().findFragmentById(R.id.country_details);
+                    dogDetailsFrag = (DogDetailsFrag)((AppCompatActivity)context).getSupportFragmentManager().findFragmentById(R.id.dog_details);
                 } catch (Exception e){
                     ((AppCompatActivity)context).getSupportFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.country_details, DogDetailsFrag.class, null, "countryDetails").addToBackStack("BBB")
+                            .replace(R.id.dog_details, DogDetailsFrag.class, null, "dogDetails").addToBackStack("BBB")
                             .commit();
                 }
 

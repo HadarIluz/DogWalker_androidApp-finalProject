@@ -17,13 +17,13 @@
         tools:layout="@layout/frag_1" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/country_details"
+        android:id="@+id/dog_details"
         class="com.example.finalproject.DogDetailsFrag"
         android:layout_width="429dp"
         android:layout_height="415dp"
         android:layout_alignParentEnd="true"
         android:background="?android:attr/detailsElementBackground"
-        android:tag="countryDetails"
+        android:tag="dogDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -4,5 +4,5 @@
     <SwitchPreference
         android:defaultValue="false"
         android:key="switch_preference_1"
-        android:title="Remember removed countries" />
+        android:title="Remember removed dogs" />
 </PreferenceScreen>
