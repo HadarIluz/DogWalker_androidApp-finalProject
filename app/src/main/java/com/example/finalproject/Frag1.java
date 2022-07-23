@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class Frag1 extends Fragment implements LifecycleOwner {
-    ArrayList<com.example.finalproject.Country> countries;
+    ArrayList<Dog> dogs;
     com.example.finalproject.MainViewModel viewModel;
     public static DogAdapter adapter;
 
@@ -34,15 +34,15 @@ public class Frag1 extends Fragment implements LifecycleOwner {
         viewModel = new ViewModelProvider(getActivity()).get(com.example.finalproject.MainViewModel.class);
         Log.d("**** in start Frag1 after viewModel ****", "**** in start Frag1 after viewModel ****");
         // Lookup the recyclerview in activity layout(id of frag_1.xml)
-        RecyclerView rvDog = (RecyclerView) view.findViewById(R.id.rvCountries);
+        RecyclerView rvDog = (RecyclerView) view.findViewById(R.id.rvDogs);
 
         // Create adapter passing in the sample user data
         adapter = new DogAdapter(viewModel.getDogMutableLiveData().getValue(), viewModel, viewModel.getItemSelectedLiveData().getValue());
 
         //observer that will notify if any change has happened in order to save data.
-        viewModel.getDogMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<com.example.finalproject.Country>>() {
+        viewModel.getDogMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Dog>>() {
             @Override
-            public void onChanged(ArrayList<com.example.finalproject.Country> dogs) {
+            public void onChanged(ArrayList<Dog> dogs) {
                 adapter.notifyDataSetChanged();
             }
         });

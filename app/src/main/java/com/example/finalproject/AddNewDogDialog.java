@@ -95,12 +95,12 @@ public class AddNewDogDialog extends DialogFragment {
                 Log.i("******* Enter in on click dialog dog ***********","******* Enter in on click dialog dog ***********");
 
                 //if(isDogFieldsValid(edDogName, edOwnerName , edDogDetails, edNextWalk)){
-                    //Dog dog = new Dog(edDogName.getText().toString(),edOwnerName.getText().toString(), edNextWalk.getText().toString(), edDogDetails.getText().toString(), spinner.getSelectedItem().toString());
-                    Country country = new Country("a","a","a","hello from details");
+                    Dog dog = new Dog(edDogName.getText().toString(),edOwnerName.getText().toString(), edNextWalk.getText().toString(), edDogDetails.getText().toString(), spinner.getSelectedItem().toString());
+                    //Dog dog = new Dog("a","a","a","hello from details");
                     //add the Dog into array of dogs - edit adapter list
                    //TODO:THINK HOW
-                    DogAdapter.dogs.add(country);
-                    Log.d("the new list is",DogAdapter.dogs.toString()+"aa");
+                    DogAdapter.dogs.add(dog);
+                    //Log.d("the new list is",DogAdapter.dogs.toString()+"aa");
 
                     // add to SP (json type)
                     ReadWriteHandler.writeToSP(DogAdapter.dogs);

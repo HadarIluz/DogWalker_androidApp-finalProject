@@ -20,13 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 //change
 public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog> implements LifecycleOwner {
-    public static List<Country> dogs;
+    public static List<Dog> dogs;
     private int focusedItem;
     DogDetailsFrag dogDetailsFrag;
     MainViewModel viewModel;
 
 
-    public DogAdapter(List<Country> dogsList, MainViewModel mainViewModel, int itemSelected) {
+    public DogAdapter(List<Dog> dogsList, MainViewModel mainViewModel, int itemSelected) {
         dogs = dogsList;
         viewModel = mainViewModel;
         focusedItem = itemSelected;
@@ -48,13 +48,15 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
 
     @Override
     public void onBindViewHolder(@NonNull InnerAdapterDog holder, int position) {
-        Country country = dogs.get(position);
+        InnerAdapterDog viewHolder = (InnerAdapterDog)holder;
+
+        Dog dog = dogs.get(position);
         if(position == focusedItem){
             holder.itemView.setBackgroundColor(Color.parseColor("#EC96EC"));
         } else{
             holder.itemView.setBackgroundColor(Color.parseColor("#E4E4E4"));
         }
-        holder.BindData(position, country);
+        holder.BindData(position, dog);
     }
 
 
@@ -71,29 +73,41 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
 
     //---------------------------INNER CLASS---------------------------
     public class InnerAdapterDog extends RecyclerView.ViewHolder{
+
+        public TextView tvDogName;
+        public TextView tvOwnerName;
+        public TextView tvWalkEvery;
+        public TextView tvNextWalk;
+
         public ImageView imFlag;
-        public TextView countryName, population;
         public View itemView;
         public String details;
 
         public InnerAdapterDog(@NonNull View itemView) {
             super(itemView);
             imFlag = (ImageView) itemView.findViewById(R.id.imageDog);
-            countryName = (TextView) itemView.findViewById(R.id.tvDogName);
-            population = (TextView) itemView.findViewById(R.id.tvPopulation);
+
+            tvDogName = (TextView) itemView.findViewById(R.id.tvDogName);
+            tvOwnerName = (TextView) itemView.findViewById(R.id.tvOwnerName);
+            tvNextWalk = (TextView) itemView.findViewById(R.id.tvDate);
+            tvWalkEvery = (TextView) itemView.findViewById(R.id.tvWalkEvery);
+
             this.itemView = itemView;
             itemView.setClickable(true);
         }
 
-        public void BindData(int position, Country country){
-            countryName.setText(country.getName());
-            population.setText(country.getShorty());
+        public void BindData(int position, Dog dog){
+            tvDogName.setText(dog.getName());
+            tvOwnerName.setText("Owner`s Name: " + dog.getOwnerName());
+            //tvNextWalk.setText("Next Walk: " + dog.getNextWalkDate().getDate() + "/" + dog.getNextWalkDate().getMonth() + "/" + dog.getNextWalkDate().getYear());
+            tvWalkEvery.setText("Walk Every: " + dog.getWalkEvery());
 
             Context context =imFlag.getContext();
+
             //int id = context.getResources().getIdentifier(country.getFlag(), "drawable", context.getPackageName());
             //imFlag.setImageResource(id);
 
-            details = country.getDetails();
+            details = dog.getDetails();
 
             itemView.setOnClickListener((view)->{
                 onClick(position);

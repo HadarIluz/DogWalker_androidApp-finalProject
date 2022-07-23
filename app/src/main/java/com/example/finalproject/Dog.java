@@ -10,18 +10,18 @@ public class Dog {
     String ownerName;
     String details;
     String walkEvery;
-    Date walkDate;
+    Date nextWalkDate;
 
-    public Dog(String name, String ownerName, String walkDate, String details, String walkEvery){
+    public Dog(String name, String ownerName, String nextWalkDate, String details, String walkEvery){
         this.name = name;
         this.ownerName= ownerName;
         this.details = details;
         this.walkEvery = walkEvery;
-        String date[] = walkDate.split("/");
+        String date[] = nextWalkDate.split("/");
         int day = Integer.parseInt(date[0]);
         int month = Integer.parseInt(date[1]);
         int year = Integer.parseInt(date[2]);;
-        this.walkDate = new Date(year, month, day);
+        this.nextWalkDate = new Date(year, month, day);
     }
 
     public Dog() {
@@ -52,12 +52,12 @@ public class Dog {
         this.walkEvery = walkEvery;
     }
 
-    public Date getWalkDate() {
-        return walkDate;
+    public Date getNextWalkDate() {
+        return nextWalkDate;
     }
 
-    public void setWalkDate(Date walkDate) {
-        this.walkDate = walkDate;
+    public void setNextWalkDate(Date nextWalkDate) {
+        this.nextWalkDate = nextWalkDate;
     }
 
     public void setDetails(String details){
@@ -76,18 +76,18 @@ public class Dog {
                 Objects.equals(ownerName, dog.ownerName) &&
                 Objects.equals(details, dog.details) &&
                 Objects.equals(walkEvery, dog.walkEvery) &&
-                Objects.equals(walkDate, dog.walkDate);
+                Objects.equals(nextWalkDate, dog.nextWalkDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, ownerName, details, walkEvery, walkDate);
+        return Objects.hash(name, ownerName, details, walkEvery, nextWalkDate);
     }
 
     public boolean checkWalkNeeded() {
         Calendar cl = Calendar.getInstance();
         Date currentTime = new Date(cl.getWeekYear(), cl.get(Calendar.MONTH) + 1, cl.get(Calendar.DAY_OF_MONTH));
-        long difference = TimeUnit.DAYS.convert(currentTime.getTime() - getWalkDate().getTime(), TimeUnit.MILLISECONDS);
+        long difference = TimeUnit.DAYS.convert(currentTime.getTime() - getNextWalkDate().getTime(), TimeUnit.MILLISECONDS);
         if(returnWaterEveryAsInt() <= difference){
             return true;
         }
@@ -129,7 +129,7 @@ public class Dog {
     @Override
     public String toString() {
         String str = "";
-        str = "Name: " + name + "\n"  + "Owner`s name:" + "\n" + ownerName + "Details: " + details + "\n" + "Walk Every: " + walkEvery + "\n" + "Last walk: " + walkDate.getDate()+"/"+ walkDate.getMonth()+"/"+ walkDate.getYear();
+        str = "Name: " + name + "\n"  + "Owner`s name:" + "\n" + ownerName + "Details: " + details + "\n" + "Walk Every: " + walkEvery + "\n" + "Last walk: " + nextWalkDate.getDate()+"/"+ nextWalkDate.getMonth()+"/"+ nextWalkDate.getYear();
         return str;
     }
 

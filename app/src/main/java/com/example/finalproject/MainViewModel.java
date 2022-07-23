@@ -8,9 +8,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.preference.PreferenceManager;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,21 +16,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 //change
 public class MainViewModel extends AndroidViewModel {
-    private MutableLiveData<ArrayList<com.example.finalproject.Country>> dogsLiveData;
-    private ArrayList<com.example.finalproject.Country> dogs;
+    private MutableLiveData<ArrayList<Dog>> dogsLiveData;
+    private ArrayList<Dog> dogs;
     private MutableLiveData<Integer> itemSelectedLiveData;
     private int itemSelected;
     //------------------file objects-------------------------------
     private static String file_path;
     public static final String FILE_NAME="remove_dogs.txt";
     private static ArrayList<String> remove_dogs;
-    private ArrayList<Country> tempDogList;
+    private ArrayList<Dog> tempDogList;
     //--------------------------------------------------------------
 
     public MainViewModel(@NonNull Application application) {
@@ -43,7 +37,7 @@ public class MainViewModel extends AndroidViewModel {
         init(application);
     }
 
-    public MutableLiveData<ArrayList<com.example.finalproject.Country>> getDogMutableLiveData() {
+    public MutableLiveData<ArrayList<Dog>> getDogMutableLiveData() {
         return dogsLiveData;
     }
 
@@ -54,11 +48,11 @@ public class MainViewModel extends AndroidViewModel {
     public void init(Application application){
         itemSelected = -1;
         itemSelectedLiveData.setValue(itemSelected);
-        dogs = new ArrayList<com.example.finalproject.Country>();
+        dogs = new ArrayList<Dog>();
         dogsLiveData.setValue(dogs);
         // initially files params
         file_path = application.getApplicationContext().getFilesDir().getAbsolutePath();
-        tempDogList = new ArrayList<Country>();
+        tempDogList = new ArrayList<Dog>();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(application.getApplicationContext());
 
 
