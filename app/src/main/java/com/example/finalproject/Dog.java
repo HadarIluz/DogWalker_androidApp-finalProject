@@ -84,17 +84,24 @@ public class Dog {
         return Objects.hash(name, ownerName, details, walkEvery, nextWalkDate);
     }
 
+    /*
+    currentTime == is the this in the clock right now.
+    difference == is the time in days (convert from MILLISECONDS) of the days which passed since the time we has to take the dog to a walk.
+
+    If difference equal or big then the WalkEvery filed so we need to take the dog to a walk but we didn't done it on time
+    --> soo.. send a SMS to user(even if the app off) && mark this dog row in light orange.
+     */
     public boolean checkWalkNeeded() {
         Calendar cl = Calendar.getInstance();
         Date currentTime = new Date(cl.getWeekYear(), cl.get(Calendar.MONTH) + 1, cl.get(Calendar.DAY_OF_MONTH));
         long difference = TimeUnit.DAYS.convert(currentTime.getTime() - getNextWalkDate().getTime(), TimeUnit.MILLISECONDS);
-        if(returnWaterEveryAsInt() <= difference){
+        if(returnWalkEveryAsInt() <= difference){
             return true;
         }
         return false;
     }
 
-    public int returnWaterEveryAsInt(){
+    public int returnWalkEveryAsInt(){
         switch (getWalkEvery()){
             case "1 Day":
                 return 1;

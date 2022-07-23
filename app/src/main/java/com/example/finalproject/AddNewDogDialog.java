@@ -169,6 +169,7 @@ public class AddNewDogDialog extends DialogFragment {
                         edNextWalk.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                     }
                 }, year, month, day);
+        //Adding a limitation on the calendar to display dates starting from the current day only.
         //picker.getDatePicker().setMinDate(System.currentTimeMillis());
         picker.show();
     }
@@ -191,13 +192,14 @@ public class AddNewDogDialog extends DialogFragment {
             showToast("Enter Dog's next Walk!", getContext());
             return false;
         }
+
+        //in case there is a dog white the same data base, we display a toast to user.
         for (Dog dog : DogAdapter.dogs) {
             if(edDogName.getText().toString().compareTo(dog.getName()) == 0){
                 showToast("This dog's name all ready exist!", getContext());
                 return false;
             }
         }
-
         return true;
     }
 
