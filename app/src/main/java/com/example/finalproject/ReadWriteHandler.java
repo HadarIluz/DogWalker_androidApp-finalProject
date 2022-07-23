@@ -11,9 +11,11 @@ import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +82,40 @@ public class ReadWriteHandler {
             e.printStackTrace();
         }
         return text.toString();
+    }
+
+/*This function is used to writeToRAW "0" when broadcast list is empty.( in DogAdapter class).
+*/
+    public static void writeToRAW(String data, Context context) {
+        file_path = context.getFilesDir().getAbsolutePath();
+        clearRawFile();
+        File directory = new File(file_path);
+        if(!directory.exists())
+            directory.mkdir();
+
+        File newFile = new File(file_path,File.separator + FILE_NAME);
+        try  {
+            if(!newFile.exists())
+                newFile.createNewFile();
+
+            FileOutputStream fOut = new FileOutputStream(newFile,true);
+            OutputStreamWriter outputWriter = new OutputStreamWriter(fOut);
+            outputWriter.write(data);
+            outputWriter.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private static void clearRawFile(){
+        try {
+            FileOutputStream writer = new FileOutputStream(file_path + File.separator + FILE_NAME);
+            writer.write(("").getBytes());
+            writer.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
 

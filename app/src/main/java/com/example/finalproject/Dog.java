@@ -85,7 +85,7 @@ public class Dog {
     }
 
     /*
-    currentTime == is the this in the clock right now.
+    currentTime == is the time in the clock right now.
     difference == is the time in days (convert from MILLISECONDS) of the days which passed since the time we has to take the dog to a walk.
 
     If difference equal or big then the WalkEvery filed so we need to take the dog to a walk but we didn't done it on time

@@ -16,6 +16,8 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /*
@@ -134,6 +136,20 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
 
             details = dog.getDetails();
 
+            /*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             change the background by the broadcast list:
+             if the dogsWalkeLArrayList list contains this specific dog so it is mean that we were supposed to take him out for a walk but forgot!!!
+             so it`s line in the recycle view will colored in light orange.
+             */
+            if(MyBroadcastReceiver.dogsWalkeLArrayList.contains(dog)){
+                itemView.findViewById(R.id.dog_item).setBackgroundColor(Color.parseColor("#dec58e")); //color: orange.
+            } else{
+                itemView.findViewById(R.id.dog_item).setBackgroundColor(Color.parseColor("#A9ECAB")); //color: green.
+            }
+            /*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+
+
+
             itemView.setOnClickListener((view)->{
                 onClickShowDetails(position);
             });
@@ -148,7 +164,32 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
         }
 
         private void clickNextWalkUpdate(int position) {
+/*update the broadcast list - if is empty write '0' in the RAW file ==> That is mean; if there are NO dogs whose
+                              date of "NEXT WALK" has expired( with the calc of the 'EvryDay' field), then we will write 0 in the RAW file.
+                              Otherwise we write 1.
+*/
+            /*
+            1. if the dogsWalkeLArrayList NOT empty--> enter if.
+            2. if dogsWalkeLArrayList contains this specific dog so we (3.)remove this dog from the list
+            4. now we check again if the dogsWalkeLArrayList if empty or not.
+                --> if is empty: we write to RAW "0" to indicate that there are no dogs that need to get out for a walk in delay.
+             */
+            if(!MyBroadcastReceiver.dogsWalkeLArrayList.isEmpty()){
 
+                if(MyBroadcastReceiver.dogsWalkeLArrayList.contains(dogs.get(position))){
+                    MyBroadcastReceiver.dogsWalkeLArrayList.remove(dogs.get(position));
+                    if(MyBroadcastReceiver.dogsWalkeLArrayList.isEmpty()){
+                        ReadWriteHandler.writeToRAW("0", MainActivity.getAppContext());
+                    }
+                }
+            }
+
+            // update the NextWalkDate object in Dog class.
+            Calendar cl = Calendar.getInstance();
+            Date currentTime = new Date(cl.getWeekYear(), cl.get(Calendar.MONTH) + 1, cl.get(Calendar.DAY_OF_MONTH));
+            dogs.get(position).setNextWalkDate(currentTime);
+            ReadWriteHandler.writeToSP(dogs);
+            notifyDataSetChanged();
 
 
         }
