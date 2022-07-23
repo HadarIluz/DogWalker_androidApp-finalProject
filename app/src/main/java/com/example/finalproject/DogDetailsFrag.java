@@ -41,7 +41,7 @@ public class DogDetailsFrag extends Fragment implements LifecycleOwner {
             @Override
             public void onChanged(Integer integer) {
                 if(integer > -1)
-                    tvDetails.setText(viewModel.getCountryMutableLiveData().getValue().get(viewModel.getItemSelectedLiveData().getValue()).getDetails());
+                    tvDetails.setText(viewModel.getDogMutableLiveData().getValue().get(viewModel.getItemSelectedLiveData().getValue()).getDetails());
                 else
                     tvDetails.setText("");
             }

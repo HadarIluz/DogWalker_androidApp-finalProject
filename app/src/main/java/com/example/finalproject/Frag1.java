@@ -37,12 +37,12 @@ public class Frag1 extends Fragment implements LifecycleOwner {
         RecyclerView rvDog = (RecyclerView) view.findViewById(R.id.rvCountries);
 
         // Create adapter passing in the sample user data
-        adapter = new DogAdapter(viewModel.getCountryMutableLiveData().getValue(), viewModel, viewModel.getItemSelectedLiveData().getValue());
+        adapter = new DogAdapter(viewModel.getDogMutableLiveData().getValue(), viewModel, viewModel.getItemSelectedLiveData().getValue());
 
         //observer that will notify if any change has happened in order to save data.
-        viewModel.getCountryMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<com.example.finalproject.Country>>() {
+        viewModel.getDogMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<com.example.finalproject.Country>>() {
             @Override
-            public void onChanged(ArrayList<com.example.finalproject.Country> countries) {
+            public void onChanged(ArrayList<com.example.finalproject.Country> dogs) {
                 adapter.notifyDataSetChanged();
             }
         });
