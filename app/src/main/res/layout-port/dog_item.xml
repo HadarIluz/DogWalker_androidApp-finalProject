@@ -17,8 +17,8 @@
 
     <ImageView
         android:id="@+id/imageDog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
         app:srcCompat="@drawable/small_logo"/>
 
     <LinearLayout
@@ -69,19 +69,19 @@
 
 
     <LinearLayout
-        android:layout_width="21dp"
+        android:layout_width="10dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/btnUpdateNextWalk"
-            android:layout_width="80dp"
+            android:layout_width="70dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
 
-            android:layout_marginRight="10dp"
+
             android:backgroundTint="#3B69B2F1"
             android:insetBottom="6dp"
             app:icon="@drawable/dog_food"
