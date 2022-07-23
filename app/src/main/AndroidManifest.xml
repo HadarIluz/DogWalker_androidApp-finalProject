@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.finalproject">
 
+
+    "<!--declare about sms permissions(used for dangerous(Run-time) or normal permission)-->"
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +15,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light"
         >
+
+
+        "<!--STATIC register for receive sms-->"
+        <receiver
+            android:name=".SMSReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+        "<!--  end-->"
+
 
         <!-- Start1 -> This is the first activity-->
         <activity android:name="com.example.finalproject.OpenScreen"

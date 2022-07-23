@@ -8,15 +8,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
+
 public class OpenScreen extends AppCompatActivity {
 
-/*
-Shows the Open screen of the application for 4 seconds and then enters the application by the MainActivity.class.
- */
+
+    /*
+    Shows the Open screen of the application for 4 seconds and then enters the application by the MainActivity.class.
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.open_screen_app);
+        launchSplash();
+    }
+
+    private void launchSplash(){
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -24,4 +31,5 @@ Shows the Open screen of the application for 4 seconds and then enters the appli
             }
         }, 4000);
     }
+
 }
