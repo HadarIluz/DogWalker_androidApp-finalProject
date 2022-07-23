@@ -53,7 +53,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
 
         // Inflate the custom layout
         View contactView = inflater.inflate(R.layout.dog_item, parent, false);
-
+//haim
         // Return a new holder instance
         InnerAdapterDog viewHolder = new InnerAdapterDog(contactView);
         return viewHolder;
