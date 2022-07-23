@@ -25,6 +25,15 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 
+/*
+This class crate new dog, creates a window that is built dynamically and allows the user to enter all the details of the dog.
+If one of the details is not entered there is a message and the dog is not saved.
+The dog's details are kept inside the SP.
+Long press - delete dog item.
+Short press - presentation of the dog's details.
+All data is saved and can be operated in the phone's length and width mode.
+*/
+
 public class AddNewDogDialog extends DialogFragment {
     DatePickerDialog picker;
     private static String file_path;
@@ -46,10 +55,11 @@ public class AddNewDogDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        CharSequence[] walkEverySpinnerArr = {"1 Day", "2 Day", "3 Day", "4 Day", "5 Day", "6 Day", "7 Day"};
+        CharSequence[] walkEverySpinnerArr = {"1 Day", "2 Days", "3 Days", "4 Days", "5 Days", "6 Days", "Week"};
         String title = getArguments().getString("title");
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         alertDialogBuilder.setTitle(title);
+
 // ------------------create the dialog view------------------
         LinearLayout layout = new LinearLayout(this.getContext());
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -92,25 +102,23 @@ public class AddNewDogDialog extends DialogFragment {
         alertDialogBuilder.setPositiveButton("Save",  new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Log.i("******* Enter in on click dialog dog ***********","******* Enter in on click dialog dog ***********");
+                Log.i("******* Enter in on click dialog dog ***********", "******* Enter in on click dialog dog ***********");
 
-                //if(isDogFieldsValid(edDogName, edOwnerName , edDogDetails, edNextWalk)){
-                    Dog dog = new Dog(edDogName.getText().toString(),edOwnerName.getText().toString(), edNextWalk.getText().toString(), edDogDetails.getText().toString(), spinner.getSelectedItem().toString());
-                    //Dog dog = new Dog("a","a","a","hello from details");
+                if(isDogFieldsValid(edDogName, edOwnerName , edDogDetails, edNextWalk)) {
+                    Dog dog = new Dog(edDogName.getText().toString(), edOwnerName.getText().toString(), edNextWalk.getText().toString(), edDogDetails.getText().toString(), spinner.getSelectedItem().toString());
+
                     //add the Dog into array of dogs - edit adapter list
-                   //TODO:THINK HOW
+
                     DogAdapter.dogs.add(dog);
-                    //Log.d("the new list is",DogAdapter.dogs.toString()+"aa");
+                    //Log.d("the new list is",DogAdapter.dogs.toString() );
 
                     // add to SP (json type)
                     ReadWriteHandler.writeToSP(DogAdapter.dogs);
-                    Frag1.adapter.notifyDataSetChanged();
                     // add notify adapter
-                    //FragCycle.adapter.notifyDataSetChanged();
+                    Frag1.adapter.notifyDataSetChanged(); //Frag1 is FragCycle
                     dialog.dismiss();
+                }
 
-
-               // }
             }
         });
         alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -166,7 +174,8 @@ public class AddNewDogDialog extends DialogFragment {
         picker.show();
     }
 
-    /*private boolean isDogFieldsValid(EditText edDogName, EditText edOwnerName, EditText edDogDetails, EditText edNextWalk){
+
+    private boolean isDogFieldsValid(EditText edDogName, EditText edOwnerName, EditText edDogDetails, EditText edNextWalk){
         if (edDogName.getText().toString().isEmpty()) {
             showToast("Enter Dog's name!", getContext());
             return false;
@@ -183,8 +192,6 @@ public class AddNewDogDialog extends DialogFragment {
             showToast("Enter Dog's next Walk!", getContext());
             return false;
         }
-        //TODO:
-
         for (Dog dog : DogAdapter.dogs) {
             if(edDogName.getText().toString().compareTo(dog.getName()) == 0){
                 showToast("This dog's name all ready exist!", getContext());
@@ -193,7 +200,7 @@ public class AddNewDogDialog extends DialogFragment {
         }
 
         return true;
-    }*/
+    }
 
     private void showToast(String str, Context context) {
         Toast toast = Toast.makeText(context, str, Toast.LENGTH_SHORT);

@@ -98,17 +98,17 @@ public class Dog {
         switch (getWalkEvery()){
             case "1 Day":
                 return 1;
-            case "2 Day":
+            case "2 Days":
                 return 2;
-            case "3 Day":
+            case "3 Days":
                 return 3;
-            case "4 Day":
+            case "4 Days":
                 return 4;
-            case "5 Day":
+            case "5 Days":
                 return 5;
-            case "6 Day":
+            case "6 Days":
                 return 6;
-            case "7 Day":
+            case "Week":
                 return 7;
         }
         return 0;
