@@ -8,6 +8,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+import android.telephony.SmsManager;
 
 import androidx.annotation.Nullable;
 
@@ -93,17 +94,19 @@ public class MyNotificationService extends Service {
                     if (isWalkNeeded()) {
                         ReadWriteHandler.writeToRAW("1", getApplicationContext());
                         //if (cl.get(Calendar.HOUR_OF_DAY) == 6 && cl.get(Calendar.MINUTE) == 26) {
-                            updateNotification("You need to take a dog to a walk\nEnter into app to see who!");
-                            Thread.sleep(1000 * 60);
-                            stopSelf();
+                        updateNotification("You need to take a dog to a walk\nEnter into app to see who!");
+                        Thread.sleep(1000 * 60);
+                        stopSelf();
+                        smsSendMessage();
                         //}
                         intent = new Intent(FOREGROUND_PROGRESS);
                         sendBroadcast(intent);
+
                     } else {
                         ReadWriteHandler.writeToRAW("0", getApplicationContext());
                     }
 
-                    Thread.sleep(1000 * 3);
+                    Thread.sleep(1000 * 60);
 
                 }
             } catch (Exception e) {
@@ -131,6 +134,18 @@ public class MyNotificationService extends Service {
         notificationManager.notify(NOTIFICATION_ID1, noti);
         return noti;
     }
+
+    public void smsSendMessage() {
+
+        //Getting intent and PendingIntent instance
+        Intent intentSms=new Intent(getApplicationContext(),MainActivity.class);
+        PendingIntent pi=PendingIntent.getActivity(getApplicationContext(), 0, intentSms,0);
+
+        //Get the SmsManager instance and call the sendTextMessage method to send message
+        SmsManager sms=SmsManager.getDefault();
+        sms.sendTextMessage("+1-555-521-5554", null, "dogggggggg", pi,null);
+    }
+
 
 
 }

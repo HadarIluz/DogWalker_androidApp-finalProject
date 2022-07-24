@@ -25,7 +25,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
                 }
             }
 
-        //****_Frag1 is FragCycle_***
+        //****_Frag1
             Frag1.adapter.notifyDataSetChanged();
 
         }
