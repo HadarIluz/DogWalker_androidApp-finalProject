@@ -20,6 +20,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import android.telephony.SmsManager;
+import android.app.PendingIntent;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -34,9 +36,10 @@ public class MainActivity extends AppCompatActivity {
      private static Context context;
     MyBroadcastReceiver broadCastReceiver;
 
-     //those are the REQUEST_CODE FOR THE RECEIVE SMS AND READ_SMS
+     //those are the REQUEST_CODE FOR THE RECEIVE SMS READ_SMS AND SEND_SMS
      private static final int RECEIVE_SMS_REQUEST_CODE   = 1;
      private static final int READ_SMS_REQUEST_CODE      = 2;
+     private static final int SEND_SMS_REQUEST_CODE      = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.context = getApplicationContext();
 
         askForSmsDangerousPermissions();
-
         //create new instance of MyBroadcastReceiver.
         broadCastReceiver = new MyBroadcastReceiver();
     }
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         private void askForSmsDangerousPermissions() {
             requestSmsDangerousPermission(Manifest.permission.RECEIVE_SMS, RECEIVE_SMS_REQUEST_CODE);
             requestSmsDangerousPermission(Manifest.permission.READ_SMS, READ_SMS_REQUEST_CODE);
+            requestSmsDangerousPermission(Manifest.permission.SEND_SMS, SEND_SMS_REQUEST_CODE);
 
         }
 
@@ -97,6 +100,12 @@ public class MainActivity extends AppCompatActivity {
 
                         /*The feature of read sms is unavailable because the feature requires a permission that that user has denied. */
                     else Toast.makeText(this, "READ_SMS permission isn't granted: ", Toast.LENGTH_SHORT).show();
+                case SEND_SMS_REQUEST_CODE:
+                    if (grantResults.length > 0 && grantResults[2] == PackageManager.PERMISSION_GRANTED)
+                          Toast.makeText(this, "SEND_SMS permission granted: ", Toast.LENGTH_SHORT).show();
+
+                         /*The feature of send sms is unavailable because the feature requires a permission that that user has denied. */
+                    else Toast.makeText(this, "SEND_SMS permission isn't granted: ", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -137,8 +146,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
     //------------------------------ BroadcastReceiver -----------------------
     @Override
     protected void onResume() {
@@ -172,4 +179,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
     //------------------------------------------------------------------------------
+
+
 }
