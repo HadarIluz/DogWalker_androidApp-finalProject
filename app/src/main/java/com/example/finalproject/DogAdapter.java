@@ -190,8 +190,6 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             dogs.get(position).setNextWalkDate(currentTime);
             ReadWriteHandler.writeToSP(dogs);
             notifyDataSetChanged();
-
-
         }
 
 

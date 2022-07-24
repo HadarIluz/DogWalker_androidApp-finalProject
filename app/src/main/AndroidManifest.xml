@@ -3,9 +3,14 @@
     package="com.example.finalproject">
 
 
+
     "<!--declare about sms permissions(used for dangerous(Run-time) or normal permission)-->"
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
+    <!--permissions for foreground-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
 
     <application
         android:allowBackup="true"
@@ -16,7 +21,6 @@
         android:theme="@style/Theme.AppCompat.Light"
         >
 
-
         "<!--STATIC register for receive sms-->"
         <receiver
             android:name=".SMSReceiver"
@@ -26,6 +30,11 @@
             </intent-filter>
         </receiver>
         "<!--  end-->"
+
+        <service android:name=".MyNotificationService"
+            android:exported="false"/>
+
+        <receiver android:name=".MyBroadcastReceiver"></receiver>
 
 
         <!-- Start1 -> This is the first activity-->
@@ -40,6 +49,7 @@
         </activity>
         <!-- End1  -> This is the first activity-->
 
+
         <!-- Start2  -> This is the second activity-->
         <activity
             android:name="com.example.finalproject.MainActivity">
@@ -48,14 +58,6 @@
             </intent-filter>
         </activity>
         <!-- End2 -> This is the second activity-->
-
-<!--        <activity android:name=".MainActivity">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
     </application>
 
 </manifest>

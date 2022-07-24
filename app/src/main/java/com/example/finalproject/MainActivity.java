@@ -1,7 +1,11 @@
 package com.example.finalproject;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,20 +31,23 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
      private static Context context;
+    MyBroadcastReceiver broadCastReceiver;
 
      //those are the REQUEST_CODE FOR THE RECEIVE SMS AND READ_SMS
      private static final int RECEIVE_SMS_REQUEST_CODE   = 1;
      private static final int READ_SMS_REQUEST_CODE      = 2;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MainActivity.context = getApplicationContext();
+
         askForSmsDangerousPermissions();
+
+        //create new instance of MyBroadcastReceiver.
+        broadCastReceiver = new MyBroadcastReceiver();
     }
 
     //@@@@@@@@@@@@@@@@@@@@@___SMSReceiver___@@@@@@@@@@@@@@@@@@@@@
@@ -129,4 +136,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+
+    //------------------------------ BroadcastReceiver -----------------------
+    @Override
+    protected void onResume() {
+        IntentFilter intentFilter = new IntentFilter(MyNotificationService.FOREGROUND_PROGRESS);
+        this.registerReceiver(broadCastReceiver, intentFilter, Manifest.permission.FOREGROUND_SERVICE, null);
+
+        if(!isMyServiceRunning(MyNotificationService.class)){
+            Intent intent = new Intent(MainActivity.this, MyNotificationService.class);
+            startForegroundService(intent);
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        unregisterReceiver(broadCastReceiver);
+        super.onStop();
+    }
+    //------------------------------------------------------------------------------
+
+
+
+    //----------------------------- NotificationService --------------------------
+    private boolean isMyServiceRunning(Class<?> serviceClass){ // check if service already running
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for( ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)){
+            if(serviceClass.getName().equals(service.service.getClassName())){
+                return true;
+            }
+        }
+        return false;
+    }
+    //------------------------------------------------------------------------------
 }
