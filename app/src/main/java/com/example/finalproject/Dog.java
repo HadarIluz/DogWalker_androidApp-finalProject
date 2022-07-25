@@ -126,5 +126,5 @@ public class Dog {
         String str = "";
         return str = "Name: " + name + "\n"  + "Owner`s name:" + ownerName + "\n" + "Details: " + details + "\n" + "Walk Every: " + walkEvery + "\n" + "Next walk: " + nextWalkDate.getDate()+"/"+ nextWalkDate.getMonth()+"/"+ nextWalkDate.getYear();
     }
-
+  
 }
