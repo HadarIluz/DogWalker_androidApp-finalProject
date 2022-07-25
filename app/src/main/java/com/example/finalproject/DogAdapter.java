@@ -129,12 +129,15 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             tvNextWalk.setText("Next Walk: " + dog.getNextWalkDate().getDate() + "/" + dog.getNextWalkDate().getMonth() + "/" + dog.getNextWalkDate().getYear());
             tvWalkEvery.setText("Walk Every: " + dog.getWalkEvery());
 
-            Context context =imFlag.getContext();
+
+            //Context context =imFlag.getContext();
             //TODO: (1)
             //int id = context.getResources().getIdentifier(country.getFlag(), "drawable", context.getPackageName());
             //imFlag.setImageResource(id);
 
-            details = dog.getDetails();
+            //Context context = itemView.getContext();
+            //details = dog.getDetails();
+            //dogDetailsFrag.setDetailsInContainer(dogs.get(position));
 
             /*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
              change the background by the broadcast list:
@@ -199,6 +202,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             notifyItemChanged(focusedItem);
             viewModel.getItemSelectedLiveData().setValue(focusedItem);
 
+
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
@@ -207,6 +211,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
                         .commit();
                 ((AppCompatActivity)context).getSupportFragmentManager().executePendingTransactions();
                 dogDetailsFrag = (DogDetailsFrag) ((AppCompatActivity)context).getSupportFragmentManager().findFragmentByTag("dogDetails");
+                dogDetailsFrag.setDetailsInContainer(dogs.get(position));
             }
             else{
                 try{
@@ -219,6 +224,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
                 }
 
             }
+            dogDetailsFrag.setDetailsInContainer(dogs.get(position));
         }
 
         private void onLongClickDeleteDog(int position){

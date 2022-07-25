@@ -14,13 +14,17 @@
         android:theme="@style/Theme.AppCompat.Light"
         >
 
-        <service android:name=".MyNotificationService"
-            android:exported="false"/>
+        <service
+            android:name=".MyNotificationService"
+            android:exported="false"
+            />
 
-        <receiver android:name=".MyBroadcastReceiver"></receiver>
+        <receiver
+            android:name=".MyBroadcastReceiver">
+        </receiver>
 
         <!-- Start1 -> This is the first activity-->
-        <activity android:name="com.example.finalproject.OpenScreen"
+        <activity android:name=".OpenScreen"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
