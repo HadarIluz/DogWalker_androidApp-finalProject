@@ -124,8 +124,7 @@ public class Dog {
     @Override
     public String toString() {
         String str = "";
-        str = "Name: " + name + "\n"  + "Owner`s name:" + "\n" + ownerName + "Details: " + details + "\n" + "Walk Every: " + walkEvery + "\n" + "Last walk: " + nextWalkDate.getDate()+"/"+ nextWalkDate.getMonth()+"/"+ nextWalkDate.getYear();
-        return str;
+        return str = "Name: " + name + "\n"  + "Owner`s name:" + ownerName + "\n" + "Details: " + details + "\n" + "Walk Every: " + walkEvery + "\n" + "Next walk: " + nextWalkDate.getDate()+"/"+ nextWalkDate.getMonth()+"/"+ nextWalkDate.getYear();
     }
 
 }

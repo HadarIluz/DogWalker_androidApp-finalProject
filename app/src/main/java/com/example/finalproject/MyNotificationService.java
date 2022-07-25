@@ -17,8 +17,14 @@ import java.util.Calendar;
 
 public class MyNotificationService extends Service {
 
+    /*
+    Foreground services show a status bar notification, so that users
+     are actively aware that your app is performing a task in the foreground
+     and is consuming system resources. The notification cannot be dismissed
+     unless the service is either stopped or removed from the foreground.
+     */
     private MyService service;
-    public static final String FOREGROUND_PROGRESS = "com.example.finalProject.foreground-progress";
+    public static final String FOREGROUND_PROGRESS = ".foreground-progress";
 
     public final static int NOTIFICATION_ID1 = 1;
     Notification.Builder notificationBuilder;
@@ -130,7 +136,7 @@ public class MyNotificationService extends Service {
     public Notification updateNotification(String details) {
         notificationBuilder.setContentText(details).setOnlyAlertOnce(false);
         Notification noti = notificationBuilder.build();
-        //noti.flags = Notification.FLAG_ONLY_ALERT_ONCE;
+        noti.flags = Notification.FLAG_ONLY_ALERT_ONCE;
         notificationManager.notify(NOTIFICATION_ID1, noti);
         return noti;
     }

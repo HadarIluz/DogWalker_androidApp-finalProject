@@ -34,7 +34,7 @@ public class DogDetailsFrag extends Fragment implements LifecycleOwner {
     /*Makes sure we save the specific line the user is stand on when turning the cell phone over.*/
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        this.tvDetails = view.findViewById(R.id.tvDetails);
+        tvDetails = (TextView)view.findViewById(R.id.tvDetails);
         viewModel = new ViewModelProvider(getActivity()).get(com.example.finalproject.MainViewModel.class);
 
         viewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
@@ -50,9 +50,9 @@ public class DogDetailsFrag extends Fragment implements LifecycleOwner {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void setDetailsInContainer(Dog dog){
+        tvDetails.setText(dog.toString());
     }
+
 
 }
