@@ -1,6 +1,8 @@
 package com.example.finalproject;
 
+import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
@@ -17,8 +19,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+
 //change
 public class MainViewModel extends AndroidViewModel {
+
+    private static MainViewModel instance;
+
     private MutableLiveData<ArrayList<Dog>> dogsLiveData;
     private ArrayList<Dog> dogs;
     private MutableLiveData<Integer> itemSelectedLiveData;
@@ -30,11 +36,19 @@ public class MainViewModel extends AndroidViewModel {
     private ArrayList<Dog> tempDogList;
     //--------------------------------------------------------------
 
-    public MainViewModel(@NonNull Application application) {
+    private MainViewModel(@NonNull Application application, Context context, Activity activity) {
         super(application);
         dogsLiveData = new MutableLiveData<>();
         itemSelectedLiveData = new MutableLiveData<>();
         init(application);
+    }
+
+    /* Singelton design pattern */
+    public static MainViewModel getInstance(Application application, Context context, Activity activity){
+        if(instance ==null){
+            instance = new MainViewModel(application, context, activity);
+        }
+        return instance;
     }
 
     public MutableLiveData<ArrayList<Dog>> getDogMutableLiveData() {

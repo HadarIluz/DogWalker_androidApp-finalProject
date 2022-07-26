@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Frag1 extends Fragment implements LifecycleOwner {
     ArrayList<Dog> dogs;
-    com.example.finalproject.MainViewModel viewModel;
+    private MainViewModel viewModel;
     public static DogAdapter adapter;
 
     @Override
@@ -31,7 +31,7 @@ public class Frag1 extends Fragment implements LifecycleOwner {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         Log.d("**** in start Frag1 ****", "**** in start Frag1 ****");
 
-        viewModel = new ViewModelProvider(getActivity()).get(com.example.finalproject.MainViewModel.class);
+        viewModel = MainViewModel.getInstance(getActivity().getApplication(),getContext(), getActivity());
         Log.d("**** in start Frag1 after viewModel ****", "**** in start Frag1 after viewModel ****");
         // Lookup the recyclerview in activity layout(id of frag_1.xml)
         RecyclerView rvDog = (RecyclerView) view.findViewById(R.id.rvDogs);
