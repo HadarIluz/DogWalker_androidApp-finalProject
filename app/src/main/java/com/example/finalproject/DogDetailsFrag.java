@@ -54,6 +54,7 @@ public class DogDetailsFrag extends Fragment implements LifecycleOwner {
                 }
             }
         });
+
         super.onViewCreated(view, savedInstanceState);
     }
 
