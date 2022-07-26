@@ -3,6 +3,7 @@ package com.example.finalproject;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -190,7 +191,22 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             // update the NextWalkDate object in Dog class.
             Calendar cl = Calendar.getInstance();
             Date currentTime = new Date(cl.getWeekYear(), cl.get(Calendar.MONTH) + 1, cl.get(Calendar.DAY_OF_MONTH));
-            dogs.get(position).setNextWalkDate(currentTime);
+            //dogs.get(position).setNextWalkDate(currentTime);
+
+            //Number of Days to add
+            cl.add(Calendar.DAY_OF_MONTH, dogs.get(position).returnWalkEveryAsInt()-1);
+            //Date after adding the days to the current date
+            Date nextDate = new Date(cl.getWeekYear(), cl.get(Calendar.MONTH) + 1, cl.get(Calendar.DAY_OF_MONTH));
+
+            Log.i("dateLogic", "currentTime: " + currentTime + " nextDate: "+nextDate);
+
+            if(currentTime.equals(nextDate)){
+                dogs.get(position).setNextWalkDate(currentTime);
+            }
+            else{
+                dogs.get(position).setNextWalkDate(nextDate);
+            }
+
 
 //________________________________
             //change this specific dog according to logic and then the reset.
