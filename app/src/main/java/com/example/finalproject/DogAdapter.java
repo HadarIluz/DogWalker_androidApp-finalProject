@@ -69,9 +69,9 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
 
         Dog dog = dogs.get(position);
         if(position == focusedItem){
-            holder.itemView.setBackgroundColor(Color.parseColor("#EC96EC"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#EC96EC")); //color: pink.
         } else{
-            holder.itemView.setBackgroundColor(Color.parseColor("#E4E4E4"));
+            holder.itemView.setBackgroundColor(Color.parseColor("#E4E4E4")); //color: gray.
         }
         holder.BindData(position, dog);
     }
@@ -145,7 +145,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
              so it`s line in the recycle view will colored in light orange.
              */
             if(MyBroadcastReceiver.dogsWalkeLArrayList.contains(dog)){
-                itemView.findViewById(R.id.dog_item).setBackgroundColor(Color.parseColor("#dec58e")); //color: orange.
+                itemView.findViewById(R.id.dog_item).setBackgroundColor(Color.parseColor("#FFDD50")); //color: orange.
             } else{
                 itemView.findViewById(R.id.dog_item).setBackgroundColor(Color.parseColor("#A9ECAB")); //color: green.
             }
@@ -191,6 +191,25 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             Calendar cl = Calendar.getInstance();
             Date currentTime = new Date(cl.getWeekYear(), cl.get(Calendar.MONTH) + 1, cl.get(Calendar.DAY_OF_MONTH));
             dogs.get(position).setNextWalkDate(currentTime);
+
+//________________________________
+            //change this specific dog according to logic and then the reset.
+            if(dogs.get(position).checkWalkNeeded() == true){
+                dogs.get(position).setSmsDog(true);
+            }
+            else{
+                dogs.get(position).setSmsDog(false);
+            }
+            //-->for smsFlag to be save in the SP before each write to SP
+            for(Dog dog : dogs) {
+                if (dog.checkWalkNeeded()) {
+                    dog.setSmsDog(true);
+                }else{
+                    dog.setSmsDog(false);
+                }
+            }
+//________________________________
+
             ReadWriteHandler.writeToSP(dogs);
             notifyDataSetChanged();
         }
@@ -233,6 +252,16 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             if(MyBroadcastReceiver.dogsWalkeLArrayList.contains(dogs.get(position)))
                 MyBroadcastReceiver.dogsWalkeLArrayList.remove(dogs.get(position));
             dogs.remove(position);
+
+            //-->for smsFlag to be save in the SP before each write to SP
+            for(Dog dog : dogs) {
+                if (dog.checkWalkNeeded()) {
+                    dog.setSmsDog(true);
+                }
+                else{
+                    dog.setSmsDog(false);
+                }
+            }
             ReadWriteHandler.writeToSP(dogs);
             //notifyDataSetChanged();
 

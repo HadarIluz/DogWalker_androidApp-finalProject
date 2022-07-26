@@ -1,14 +1,11 @@
 package com.example.finalproject;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.util.Log;
-import android.widget.Toast;
 
 
 //extern class which extends BroadcastReceiver.
@@ -16,9 +13,12 @@ import android.widget.Toast;
 //This declared in the manifest file and works even if the app is closed.
 public class SMSReceiver extends BroadcastReceiver {
 
-    private String tag = "sms received is null";
+    private static final String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED";
+    private MainViewModel myViewModel;
+
     @Override
     public void onReceive(Context context, Intent intent) {
+
         SmsMessage[] messages = Telephony.Sms.Intents.getMessagesFromIntent(intent);
         SmsMessage message = messages[0];
         if(message != null)
@@ -28,11 +28,10 @@ public class SMSReceiver extends BroadcastReceiver {
 
             //create string with the name of the sender and content as requested in lab.
             String senderAndContent = "New message from: " + sender + "\nThe message: " + body;
-
-            Toast.makeText(context, senderAndContent, Toast.LENGTH_LONG).show(); // show toast with the string we created.
+            //Toast.makeText(context, senderAndContent, Toast.LENGTH_LONG).show(); // show toast with the string we created.
         }
         else {
-            Log.e(tag, "message is null");
+            Log.e(SMS_RECEIVED, "message is null");
         }
     }
 }

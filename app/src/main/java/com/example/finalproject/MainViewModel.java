@@ -36,6 +36,7 @@ public class MainViewModel extends AndroidViewModel {
     private ArrayList<Dog> tempDogList;
     //--------------------------------------------------------------
 
+
     private MainViewModel(@NonNull Application application, Context context, Activity activity) {
         super(application);
         dogsLiveData = new MutableLiveData<>();
@@ -144,6 +145,5 @@ public class MainViewModel extends AndroidViewModel {
         }
         return text.toString();
     }
-
 
 }

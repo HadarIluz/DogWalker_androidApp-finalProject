@@ -106,8 +106,16 @@ public class AddNewDogDialog extends DialogFragment {
                 Log.i("******* Enter in on click dialog dog ***********", "******* Enter in on click dialog dog ***********");
 
                 if(isDogFieldsValid(edDogName, edOwnerName , edDogDetails, edNextWalk)) {
-                    Dog dog = new Dog(edDogName.getText().toString(), edOwnerName.getText().toString(), edNextWalk.getText().toString(), edDogDetails.getText().toString(), spinner.getSelectedItem().toString());
 
+                    Dog dog = new Dog(edDogName.getText().toString(), edOwnerName.getText().toString(), edNextWalk.getText().toString(), edDogDetails.getText().toString(), spinner.getSelectedItem().toString(), false);
+
+                    //-->for smsFlag to be save in the SP before each writeToSP
+                    if(dog.checkWalkNeeded()) {
+                        dog.setSmsDog(true);
+                    }
+                    else{
+                        dog.setSmsDog(false);
+                    }
                     //add the Dog into array of dogs - edit adapter list
                     DogAdapter.dogs.add(dog);
                     //Log.d("the new list is",DogAdapter.dogs.toString() );

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.telephony.SmsManager;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -99,12 +100,22 @@ public class MyNotificationService extends Service {
 
                     if (isWalkNeeded()) {
                         ReadWriteHandler.writeToRAW("1", getApplicationContext());
-                        //if (cl.get(Calendar.HOUR_OF_DAY) == 6 && cl.get(Calendar.MINUTE) == 26) {
+
+                        ArrayList<Dog> dogs = ReadWriteHandler.readFromSP();
+                        for (Dog dog : dogs) {
+                            if (dog.checkWalkNeeded() && dog.isSmsDog() == true) {
+                                dog.setSmsDog(false);
+                                smsSendMessage(dog);
+                                Log.i("sms"," sms sent about dog: " + dog.getName());
+                            }
+                        }
+                        ReadWriteHandler.writeToSP(dogs);
+
                         updateNotification("You need to take a dog to a walk\nEnter into app to see who!");
                         Thread.sleep(1000 * 60);
                         stopSelf();
-                        smsSendMessage();
-                        //}
+
+
                         intent = new Intent(FOREGROUND_PROGRESS);
                         sendBroadcast(intent);
 
@@ -125,6 +136,7 @@ public class MyNotificationService extends Service {
             ArrayList<Dog> dogs = ReadWriteHandler.readFromSP();
             for (Dog dog : dogs) {
                 if (dog.checkWalkNeeded()) {
+                    dog.setSmsDog(true);
                     return true;
                 }
             }
@@ -141,7 +153,7 @@ public class MyNotificationService extends Service {
         return noti;
     }
 
-    public void smsSendMessage() {
+    public void smsSendMessage(Dog dog) {
 
         //Getting intent and PendingIntent instance
         Intent intentSms=new Intent(getApplicationContext(),MainActivity.class);
@@ -149,7 +161,7 @@ public class MyNotificationService extends Service {
 
         //Get the SmsManager instance and call the sendTextMessage method to send message
         SmsManager sms=SmsManager.getDefault();
-        sms.sendTextMessage("+1-555-521-5554", null, "dogggggggg", pi,null);
+        sms.sendTextMessage("+1-555-521-5554", null,  dog.getName()+ " need to walk and eat!", pi,null);
     }
 
 

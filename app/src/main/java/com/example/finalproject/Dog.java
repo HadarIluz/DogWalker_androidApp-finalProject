@@ -11,8 +11,9 @@ public class Dog {
     String details;
     String walkEvery;
     Date nextWalkDate;
+    private boolean isSmsDog;
 
-    public Dog(String name, String ownerName, String nextWalkDate, String details, String walkEvery){
+    public Dog(String name, String ownerName, String nextWalkDate, String details, String walkEvery,boolean isSmsDog){
         this.name = name;
         this.ownerName= ownerName;
         this.details = details;
@@ -22,9 +23,13 @@ public class Dog {
         int month = Integer.parseInt(date[1]);
         int year = Integer.parseInt(date[2]);;
         this.nextWalkDate = new Date(year, month, day);
+
+        this.isSmsDog= isSmsDog;
     }
 
-    public Dog() {
+    //construe for SMS.
+    public Dog(String name) {
+        this.name = name;
         // TODO Auto-generated constructor stub
     }
 
@@ -125,6 +130,15 @@ public class Dog {
     public String toString() {
         String str = "";
         return str = "Name: " + name + "\n"  + "Owner`s name:" + ownerName + "\n" + "Details: " + details + "\n" + "Walk Every: " + walkEvery + "\n" + "Next walk: " + nextWalkDate.getDate()+"/"+ nextWalkDate.getMonth()+"/"+ nextWalkDate.getYear();
+    }
+
+    //TODO: THINK
+    public boolean isSmsDog() {
+        return isSmsDog;
+    }
+
+    public void setSmsDog(boolean b) {
+        this.isSmsDog = b;
     }
   
 }
