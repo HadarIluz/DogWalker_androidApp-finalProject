@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,11 +32,19 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
     DogDetailsFrag dogDetailsFrag;
     MainViewModel viewModel;
 
+    //TODO: START CAMERA
+    private static final int PERMISSION_CODE = 1001;
+    private static final int REQUEST_IMAGE_CAPTURE = 100;
+    MyCameraActivity myCameraActivity;
+    //TODO: END CAMERA
+
 
     public DogAdapter(List<Dog> dogsList, MainViewModel mainViewModel, int itemSelected) {
         dogs = dogsList;
         viewModel = mainViewModel;
         focusedItem = itemSelected;
+
+        myCameraActivity = new MyCameraActivity();
     }
 
     /* ##########_3 functions from Adapter abstract class_##########*/
@@ -102,15 +110,14 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
         public TextView tvWalkEvery;
         public TextView tvNextWalk;
 
-        public ImageView imFlag;
+        public ImageButton imDog;
         public View itemView;
-        public String details;
         public Button btnWalkUpdate;
 
         public InnerAdapterDog(@NonNull View itemView) {
             super(itemView);
             //TODO: (1) OPEN CAMERA AND SAVE DOGS PIC
-            imFlag = (ImageView) itemView.findViewById(R.id.imageDog);
+            imDog = (ImageButton) itemView.findViewById(R.id.imageButtonDog);
 
             tvDogName = (TextView) itemView.findViewById(R.id.tvDogName);
             tvOwnerName = (TextView) itemView.findViewById(R.id.tvOwnerName);
@@ -128,6 +135,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             tvOwnerName.setText("Owner`s Name: " + dog.getOwnerName());
             tvNextWalk.setText("Next Walk: " + dog.getNextWalkDate().getDate() + "/" + dog.getNextWalkDate().getMonth() + "/" + dog.getNextWalkDate().getYear());
             tvWalkEvery.setText("Walk Every: " + dog.getWalkEvery());
+
 
 
             //Context context =imFlag.getContext();
@@ -164,7 +172,41 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             btnWalkUpdate.setOnClickListener((view)->{
                 clickNextWalkUpdate(position);
             });
+
+            imDog.setOnClickListener((view)->{
+                myCameraActivity.onClick();
+            });
+
+
+            //TODO: START CAMERA
+//            imDog.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    //check runtime permission
+//                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+//                        if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+//                                == PackageManager.PERMISSION_DENIED){
+//                            String[] permissions = {Manifest.permission.CAMERA};
+//                            requestPermissions(permissions, PERMISSION_CODE);
+//                        }
+//                        else{
+//                            //permission already granted
+//                            pickImageFromGallery();
+//                        }
+//                    }
+//                }
+//            });
+
+
         }
+
+//        private void pickImageFromGallery(){
+//            //intent to pick image
+//            Intent intent = new Intent();
+//            intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+//            startActivityForResult(intent.createChooser(intent,"take pic"), REQUEST_IMAGE_CAPTURE);
+//        }
+        //TODO: END CAMERA
 
         private void clickNextWalkUpdate(int position) {
 /*update the broadcast list - if is empty write '0' in the RAW file ==> That is mean; if there are NO dogs whose

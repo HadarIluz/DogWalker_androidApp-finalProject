@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dog_item"
 
-    android:background="#A9ECAB"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#A9ECAB"
     android:orientation="horizontal"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -15,10 +15,14 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.0">
 
-    <ImageView
-        android:id="@+id/imageDog"
-        android:layout_width="80dp"
+
+    <ImageButton
+        android:id="@+id/imageButtonDog"
+        android:layout_width="110dp"
         android:layout_height="match_parent"
+        android:background="@drawable/small_logo"
+        android:clickable="true"
+        android:contextClickable="true"
         app:srcCompat="@drawable/small_logo" />
 
     <LinearLayout
@@ -83,9 +87,9 @@
 
             android:backgroundTint="#3B69B2F1"
             android:insetBottom="6dp"
+            android:text="Walk"
             app:icon="@drawable/dog_food"
             app:iconGravity="top"
-            android:text="Walk"
             app:iconTint="#FFFFFF" />
     </LinearLayout>
 
