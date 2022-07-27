@@ -28,7 +28,6 @@ public class SMSReceiver extends BroadcastReceiver {
 
             //create string with the name of the sender and content as requested in lab.
             String senderAndContent = "New message from: " + sender + "\nThe message: " + body;
-            //Toast.makeText(context, senderAndContent, Toast.LENGTH_LONG).show(); // show toast with the string we created.
         }
         else {
             Log.e(SMS_RECEIVED, "message is null");

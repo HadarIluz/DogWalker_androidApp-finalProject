@@ -77,23 +77,6 @@ public class MainViewModel extends AndroidViewModel {
         dogsLiveData.setValue(tempDogList);
         //-----End SharedPreferences-----------
 
-        //---------Raw file-----------
-        //remove_dogs = new ArrayList<String>(Arrays.asList(readFile().split("\n")));
-        //-----End Raw file-----------
-
-
-
-
-        //-----Raw file-----------
-//            try {
-//                FileOutputStream writer = new FileOutputStream(file_path + File.separator + FILE_NAME);
-//                writer.write(("").getBytes());
-//                writer.close();
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-        //-----End Raw file-----------
-
     }
 
     //---------function for raw file---------

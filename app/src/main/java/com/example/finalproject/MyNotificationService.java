@@ -68,11 +68,6 @@ public class MyNotificationService extends Service {
     }
 
 
-
-
-
-
-
     //---------------------------------
 
     // happens every time the app starts
@@ -142,7 +137,7 @@ public class MyNotificationService extends Service {
             }
             return false;
         }
-    }//end
+    }//end MyService
 
 
     public Notification updateNotification(String details) {

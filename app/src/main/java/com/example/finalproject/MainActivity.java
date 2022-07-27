@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.context = getApplicationContext();
 
         askForSmsDangerousPermissions();
+
         //create new instance of MyBroadcastReceiver.
         broadCastReceiver = new MyBroadcastReceiver();
     }

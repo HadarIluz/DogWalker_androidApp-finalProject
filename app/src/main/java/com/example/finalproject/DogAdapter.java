@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -56,7 +55,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
 
         // Inflate the custom layout
         View contactView = inflater.inflate(R.layout.dog_item, parent, false);
-//haim
+
         // Return a new holder instance
         InnerAdapterDog viewHolder = new InnerAdapterDog(contactView);
         return viewHolder;
@@ -97,22 +96,16 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
     -------------------------------------------------------------------
      */
     public class InnerAdapterDog extends RecyclerView.ViewHolder{
-
         public TextView tvDogName;
         public TextView tvOwnerName;
         public TextView tvWalkEvery;
         public TextView tvNextWalk;
 
-        public ImageView imFlag;
         public View itemView;
-        public String details;
         public Button btnWalkUpdate;
 
         public InnerAdapterDog(@NonNull View itemView) {
             super(itemView);
-            //TODO: (1) OPEN CAMERA AND SAVE DOGS PIC
-            imFlag = (ImageView) itemView.findViewById(R.id.imageDog);
-
             tvDogName = (TextView) itemView.findViewById(R.id.tvDogName);
             tvOwnerName = (TextView) itemView.findViewById(R.id.tvOwnerName);
             tvNextWalk = (TextView) itemView.findViewById(R.id.tvDate);
@@ -129,16 +122,6 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             tvOwnerName.setText("Owner`s Name: " + dog.getOwnerName());
             tvNextWalk.setText("Next Walk: " + dog.getNextWalkDate().getDate() + "/" + dog.getNextWalkDate().getMonth() + "/" + dog.getNextWalkDate().getYear());
             tvWalkEvery.setText("Walk Every: " + dog.getWalkEvery());
-
-
-            //Context context =imFlag.getContext();
-            //TODO: (1)
-            //int id = context.getResources().getIdentifier(country.getFlag(), "drawable", context.getPackageName());
-            //imFlag.setImageResource(id);
-
-            //Context context = itemView.getContext();
-            //details = dog.getDetails();
-            //dogDetailsFrag.setDetailsInContainer(dogs.get(position));
 
             /*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
              change the background by the broadcast list:
@@ -191,7 +174,6 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
             // update the NextWalkDate object in Dog class.
             Calendar cl = Calendar.getInstance();
             Date currentTime = new Date(cl.getWeekYear(), cl.get(Calendar.MONTH) + 1, cl.get(Calendar.DAY_OF_MONTH));
-            //dogs.get(position).setNextWalkDate(currentTime);
 
             //Number of Days to add
             cl.add(Calendar.DAY_OF_MONTH, dogs.get(position).returnWalkEveryAsInt()-1);
@@ -279,19 +261,7 @@ public class DogAdapter extends RecyclerView.Adapter<DogAdapter.InnerAdapterDog>
                 }
             }
             ReadWriteHandler.writeToSP(dogs);
-            //notifyDataSetChanged();
-
-/*
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(viewModel.getApplication().getApplicationContext());
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(viewModel.getDogMutableLiveData().getValue().get(position).getName(),viewModel.getDogMutableLiveData().getValue().get(position).getName());
-            editor.commit();
-*/
             //------End SharedPreferences------
-
-            //-----Raw file-----------
-            //viewModel.writeData(viewModel.getCountryMutableLiveData().getValue().get(position).getName());
-            //-----End Raw file-------
 
             if(focusedItem == position){
                 focusedItem = -1;

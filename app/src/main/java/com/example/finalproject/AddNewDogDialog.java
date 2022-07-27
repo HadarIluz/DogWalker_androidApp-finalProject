@@ -118,7 +118,6 @@ public class AddNewDogDialog extends DialogFragment {
                     }
                     //add the Dog into array of dogs - edit adapter list
                     DogAdapter.dogs.add(dog);
-                    //Log.d("the new list is",DogAdapter.dogs.toString() );
 
                     // add to SP (json type)
                     ReadWriteHandler.writeToSP(DogAdapter.dogs);

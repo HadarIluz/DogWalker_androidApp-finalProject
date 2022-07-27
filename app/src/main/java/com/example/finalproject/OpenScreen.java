@@ -12,7 +12,6 @@ import java.util.TimerTask;
 
 public class OpenScreen extends AppCompatActivity {
 
-
     /*
     Shows the Open screen of the application for 4 seconds and then enters the application by the MainActivity.class.
     */
