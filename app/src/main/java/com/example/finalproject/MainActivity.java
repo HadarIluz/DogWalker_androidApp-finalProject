@@ -19,12 +19,12 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
 public class MainActivity extends AppCompatActivity {
-     private static Context context;
+    private static Context context;
     MyBroadcastReceiver broadCastReceiver;
 
-     //those are the REQUEST_CODE FOR THE RECEIVE SMS and READ_SMS
-     private static final int RECEIVE_SMS_REQUEST_CODE   = 1;
-     private static final int READ_SMS_REQUEST_CODE      = 2;
+    //those are the REQUEST_CODE FOR THE RECEIVE SMS and READ_SMS
+    private static final int RECEIVE_SMS_REQUEST_CODE   = 1;
+    private static final int READ_SMS_REQUEST_CODE      = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         private void askForSmsDangerousPermissions() {
             requestSmsDangerousPermission(Manifest.permission.RECEIVE_SMS, RECEIVE_SMS_REQUEST_CODE);
             requestSmsDangerousPermission(Manifest.permission.READ_SMS, READ_SMS_REQUEST_CODE);
-
         }
 
         //we choose to use the new android flow in order to handle request.
@@ -72,23 +71,29 @@ public class MainActivity extends AppCompatActivity {
 
             switch (requestCode) {
                 case RECEIVE_SMS_REQUEST_CODE:
-                    if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                         Toast.makeText(this, "RECEIVE_SMS permission granted: ", Toast.LENGTH_SHORT).show();
-
+                    if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                        Toast.makeText(this, "RECEIVE_SMS permission granted: ", Toast.LENGTH_SHORT).show();
+                    }
                     /*The feature of receive sms is unavailable because the feature requires a permission that that user has denied. */
-                    else
+                    else {
                         Toast.makeText(this, "RECEIVE_SMS permission isn't granted: ", Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case READ_SMS_REQUEST_CODE:
-                    if (grantResults.length > 0 && grantResults[1] == PackageManager.PERMISSION_GRANTED)
+                    if (grantResults.length > 0 && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                         Toast.makeText(this, "READ_SMS permission granted: ", Toast.LENGTH_SHORT).show();
-
+                    }
                         /*The feature of read sms is unavailable because the feature requires a permission that that user has denied. */
-                    else Toast.makeText(this, "READ_SMS permission isn't granted: ", Toast.LENGTH_SHORT).show();
+                    else {
+                        Toast.makeText(this, "READ_SMS permission isn't granted: ", Toast.LENGTH_SHORT).show();
+                    }
                     break;
             }
         }
         //@@@@@@@@@@@@@@@@@@@@@___End___SMSReceiver___@@@@@@@@@@@@@@@@@@@@@
+
+
+
     /*create an settings menu for all fragments to use.*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    //in this function we gets the items which has been pressed and handle the click event, it can be pressed from any fragment in the application.
+    /*in this function we gets the items which has been pressed and handle the click event,
+    it can be pressed from any fragment in the application.*/
     @SuppressLint("ResourceType")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
