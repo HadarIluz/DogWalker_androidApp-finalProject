@@ -9,7 +9,6 @@ import android.util.Log;
 
 
 //extern class which extends BroadcastReceiver.
-//This class for dynamic and static registrations!!
 //This declared in the manifest file and works even if the app is closed.
 public class SMSReceiver extends BroadcastReceiver {
 

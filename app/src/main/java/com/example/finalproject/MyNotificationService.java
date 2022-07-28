@@ -25,6 +25,8 @@ public class MyNotificationService extends Service {
      unless the service is either stopped or removed from the foreground.
      */
     private MyService service;
+
+    /*Is a service that stays alive even the app is terminated.*/
     public static final String FOREGROUND_PROGRESS = ".foreground-progress";
 
     public final static int NOTIFICATION_ID1 = 1;

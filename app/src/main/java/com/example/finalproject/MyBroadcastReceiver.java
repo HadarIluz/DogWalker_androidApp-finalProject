@@ -10,7 +10,7 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     public static ArrayList<Dog> dogsWalkeLArrayList = new ArrayList<>();
 
     /*
-    Broadcast Receiver: Dynamic Registration.
+    Broadcast Receiver: static Registration.
     This method is called when the BroadcastReceiver is receiving an Intent broadcast.
      */
     @Override
